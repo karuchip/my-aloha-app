@@ -23,16 +23,18 @@ model User {
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
-  createAt  DateTime @default(now())
-  updateAt  DateTime @updatedAt
-  title     String   @db.VarChar(30)
-  content   String?
-  image     String?
-  likeCount Int      @default(0)
-  lat       Float?
-  lon       Float?
-  published Boolean  @default(false)
-  author    User?    @relation(fields: [authorId], references: [id])
-  authorId  Int?
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now()) @map("createAt")
+  updatedAt   DateTime @updatedAt @map("updateAt")
+  title       String   @db.VarChar(30)
+  description String?  @map("content")
+  image       String?
+  likeCount   Int      @default(0)
+  place       String   @default("default-place")
+  lat         Float?
+  lon         Float?
+  category    String   @default("culture")
+  published   Boolean  @default(false)
+  author      User?    @relation(fields: [authorId], references: [id])
+  authorId    Int?
 }

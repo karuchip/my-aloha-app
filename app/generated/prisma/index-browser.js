@@ -126,14 +126,16 @@ exports.Prisma.UserScalarFieldEnum = {
 
 exports.Prisma.PostScalarFieldEnum = {
   id: 'id',
-  createAt: 'createAt',
-  updateAt: 'updateAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   title: 'title',
-  content: 'content',
+  description: 'description',
   image: 'image',
   likeCount: 'likeCount',
+  place: 'place',
   lat: 'lat',
   lon: 'lon',
+  category: 'category',
   published: 'published',
   authorId: 'authorId'
 };
@@ -156,8 +158,10 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.PostOrderByRelevanceFieldEnum = {
   title: 'title',
-  content: 'content',
-  image: 'image'
+  description: 'description',
+  image: 'image',
+  place: 'place',
+  category: 'category'
 };
 
 

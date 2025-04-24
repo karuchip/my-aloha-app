@@ -1982,42 +1982,48 @@ export namespace Prisma {
 
   export type PostMinAggregateOutputType = {
     id: number | null
-    createAt: Date | null
-    updateAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
     title: string | null
-    content: string | null
+    description: string | null
     image: string | null
     likeCount: number | null
+    place: string | null
     lat: number | null
     lon: number | null
+    category: string | null
     published: boolean | null
     authorId: number | null
   }
 
   export type PostMaxAggregateOutputType = {
     id: number | null
-    createAt: Date | null
-    updateAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
     title: string | null
-    content: string | null
+    description: string | null
     image: string | null
     likeCount: number | null
+    place: string | null
     lat: number | null
     lon: number | null
+    category: string | null
     published: boolean | null
     authorId: number | null
   }
 
   export type PostCountAggregateOutputType = {
     id: number
-    createAt: number
-    updateAt: number
+    createdAt: number
+    updatedAt: number
     title: number
-    content: number
+    description: number
     image: number
     likeCount: number
+    place: number
     lat: number
     lon: number
+    category: number
     published: number
     authorId: number
     _all: number
@@ -2042,42 +2048,48 @@ export namespace Prisma {
 
   export type PostMinAggregateInputType = {
     id?: true
-    createAt?: true
-    updateAt?: true
+    createdAt?: true
+    updatedAt?: true
     title?: true
-    content?: true
+    description?: true
     image?: true
     likeCount?: true
+    place?: true
     lat?: true
     lon?: true
+    category?: true
     published?: true
     authorId?: true
   }
 
   export type PostMaxAggregateInputType = {
     id?: true
-    createAt?: true
-    updateAt?: true
+    createdAt?: true
+    updatedAt?: true
     title?: true
-    content?: true
+    description?: true
     image?: true
     likeCount?: true
+    place?: true
     lat?: true
     lon?: true
+    category?: true
     published?: true
     authorId?: true
   }
 
   export type PostCountAggregateInputType = {
     id?: true
-    createAt?: true
-    updateAt?: true
+    createdAt?: true
+    updatedAt?: true
     title?: true
-    content?: true
+    description?: true
     image?: true
     likeCount?: true
+    place?: true
     lat?: true
     lon?: true
+    category?: true
     published?: true
     authorId?: true
     _all?: true
@@ -2171,14 +2183,16 @@ export namespace Prisma {
 
   export type PostGroupByOutputType = {
     id: number
-    createAt: Date
-    updateAt: Date
+    createdAt: Date
+    updatedAt: Date
     title: string
-    content: string | null
+    description: string | null
     image: string | null
     likeCount: number
+    place: string
     lat: number | null
     lon: number | null
+    category: string
     published: boolean
     authorId: number | null
     _count: PostCountAggregateOutputType | null
@@ -2204,14 +2218,16 @@ export namespace Prisma {
 
   export type PostSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    createAt?: boolean
-    updateAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     title?: boolean
-    content?: boolean
+    description?: boolean
     image?: boolean
     likeCount?: boolean
+    place?: boolean
     lat?: boolean
     lon?: boolean
+    category?: boolean
     published?: boolean
     authorId?: boolean
     author?: boolean | Post$authorArgs<ExtArgs>
@@ -2221,19 +2237,21 @@ export namespace Prisma {
 
   export type PostSelectScalar = {
     id?: boolean
-    createAt?: boolean
-    updateAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     title?: boolean
-    content?: boolean
+    description?: boolean
     image?: boolean
     likeCount?: boolean
+    place?: boolean
     lat?: boolean
     lon?: boolean
+    category?: boolean
     published?: boolean
     authorId?: boolean
   }
 
-  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createAt" | "updateAt" | "title" | "content" | "image" | "likeCount" | "lat" | "lon" | "published" | "authorId", ExtArgs["result"]["post"]>
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "title" | "description" | "image" | "likeCount" | "place" | "lat" | "lon" | "category" | "published" | "authorId", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | Post$authorArgs<ExtArgs>
   }
@@ -2245,14 +2263,16 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      createAt: Date
-      updateAt: Date
+      createdAt: Date
+      updatedAt: Date
       title: string
-      content: string | null
+      description: string | null
       image: string | null
       likeCount: number
+      place: string
       lat: number | null
       lon: number | null
+      category: string
       published: boolean
       authorId: number | null
     }, ExtArgs["result"]["post"]>
@@ -2626,14 +2646,16 @@ export namespace Prisma {
    */
   interface PostFieldRefs {
     readonly id: FieldRef<"Post", 'Int'>
-    readonly createAt: FieldRef<"Post", 'DateTime'>
-    readonly updateAt: FieldRef<"Post", 'DateTime'>
+    readonly createdAt: FieldRef<"Post", 'DateTime'>
+    readonly updatedAt: FieldRef<"Post", 'DateTime'>
     readonly title: FieldRef<"Post", 'String'>
-    readonly content: FieldRef<"Post", 'String'>
+    readonly description: FieldRef<"Post", 'String'>
     readonly image: FieldRef<"Post", 'String'>
     readonly likeCount: FieldRef<"Post", 'Int'>
+    readonly place: FieldRef<"Post", 'String'>
     readonly lat: FieldRef<"Post", 'Float'>
     readonly lon: FieldRef<"Post", 'Float'>
+    readonly category: FieldRef<"Post", 'String'>
     readonly published: FieldRef<"Post", 'Boolean'>
     readonly authorId: FieldRef<"Post", 'Int'>
   }
@@ -3042,14 +3064,16 @@ export namespace Prisma {
 
   export const PostScalarFieldEnum: {
     id: 'id',
-    createAt: 'createAt',
-    updateAt: 'updateAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
     title: 'title',
-    content: 'content',
+    description: 'description',
     image: 'image',
     likeCount: 'likeCount',
+    place: 'place',
     lat: 'lat',
     lon: 'lon',
+    category: 'category',
     published: 'published',
     authorId: 'authorId'
   };
@@ -3084,8 +3108,10 @@ export namespace Prisma {
 
   export const PostOrderByRelevanceFieldEnum: {
     title: 'title',
-    content: 'content',
-    image: 'image'
+    description: 'description',
+    image: 'image',
+    place: 'place',
+    category: 'category'
   };
 
   export type PostOrderByRelevanceFieldEnum = (typeof PostOrderByRelevanceFieldEnum)[keyof typeof PostOrderByRelevanceFieldEnum]
@@ -3192,14 +3218,16 @@ export namespace Prisma {
     OR?: PostWhereInput[]
     NOT?: PostWhereInput | PostWhereInput[]
     id?: IntFilter<"Post"> | number
-    createAt?: DateTimeFilter<"Post"> | Date | string
-    updateAt?: DateTimeFilter<"Post"> | Date | string
+    createdAt?: DateTimeFilter<"Post"> | Date | string
+    updatedAt?: DateTimeFilter<"Post"> | Date | string
     title?: StringFilter<"Post"> | string
-    content?: StringNullableFilter<"Post"> | string | null
+    description?: StringNullableFilter<"Post"> | string | null
     image?: StringNullableFilter<"Post"> | string | null
     likeCount?: IntFilter<"Post"> | number
+    place?: StringFilter<"Post"> | string
     lat?: FloatNullableFilter<"Post"> | number | null
     lon?: FloatNullableFilter<"Post"> | number | null
+    category?: StringFilter<"Post"> | string
     published?: BoolFilter<"Post"> | boolean
     authorId?: IntNullableFilter<"Post"> | number | null
     author?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
@@ -3207,14 +3235,16 @@ export namespace Prisma {
 
   export type PostOrderByWithRelationInput = {
     id?: SortOrder
-    createAt?: SortOrder
-    updateAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     title?: SortOrder
-    content?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
     likeCount?: SortOrder
+    place?: SortOrder
     lat?: SortOrderInput | SortOrder
     lon?: SortOrderInput | SortOrder
+    category?: SortOrder
     published?: SortOrder
     authorId?: SortOrderInput | SortOrder
     author?: UserOrderByWithRelationInput
@@ -3226,14 +3256,16 @@ export namespace Prisma {
     AND?: PostWhereInput | PostWhereInput[]
     OR?: PostWhereInput[]
     NOT?: PostWhereInput | PostWhereInput[]
-    createAt?: DateTimeFilter<"Post"> | Date | string
-    updateAt?: DateTimeFilter<"Post"> | Date | string
+    createdAt?: DateTimeFilter<"Post"> | Date | string
+    updatedAt?: DateTimeFilter<"Post"> | Date | string
     title?: StringFilter<"Post"> | string
-    content?: StringNullableFilter<"Post"> | string | null
+    description?: StringNullableFilter<"Post"> | string | null
     image?: StringNullableFilter<"Post"> | string | null
     likeCount?: IntFilter<"Post"> | number
+    place?: StringFilter<"Post"> | string
     lat?: FloatNullableFilter<"Post"> | number | null
     lon?: FloatNullableFilter<"Post"> | number | null
+    category?: StringFilter<"Post"> | string
     published?: BoolFilter<"Post"> | boolean
     authorId?: IntNullableFilter<"Post"> | number | null
     author?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
@@ -3241,14 +3273,16 @@ export namespace Prisma {
 
   export type PostOrderByWithAggregationInput = {
     id?: SortOrder
-    createAt?: SortOrder
-    updateAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     title?: SortOrder
-    content?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
     likeCount?: SortOrder
+    place?: SortOrder
     lat?: SortOrderInput | SortOrder
     lon?: SortOrderInput | SortOrder
+    category?: SortOrder
     published?: SortOrder
     authorId?: SortOrderInput | SortOrder
     _count?: PostCountOrderByAggregateInput
@@ -3263,14 +3297,16 @@ export namespace Prisma {
     OR?: PostScalarWhereWithAggregatesInput[]
     NOT?: PostScalarWhereWithAggregatesInput | PostScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Post"> | number
-    createAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
-    updateAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
     title?: StringWithAggregatesFilter<"Post"> | string
-    content?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    description?: StringNullableWithAggregatesFilter<"Post"> | string | null
     image?: StringNullableWithAggregatesFilter<"Post"> | string | null
     likeCount?: IntWithAggregatesFilter<"Post"> | number
+    place?: StringWithAggregatesFilter<"Post"> | string
     lat?: FloatNullableWithAggregatesFilter<"Post"> | number | null
     lon?: FloatNullableWithAggregatesFilter<"Post"> | number | null
+    category?: StringWithAggregatesFilter<"Post"> | string
     published?: BoolWithAggregatesFilter<"Post"> | boolean
     authorId?: IntNullableWithAggregatesFilter<"Post"> | number | null
   }
@@ -3326,95 +3362,109 @@ export namespace Prisma {
   }
 
   export type PostCreateInput = {
-    createAt?: Date | string
-    updateAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     title: string
-    content?: string | null
+    description?: string | null
     image?: string | null
     likeCount?: number
+    place?: string
     lat?: number | null
     lon?: number | null
+    category?: string
     published?: boolean
     author?: UserCreateNestedOneWithoutPostsInput
   }
 
   export type PostUncheckedCreateInput = {
     id?: number
-    createAt?: Date | string
-    updateAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     title: string
-    content?: string | null
+    description?: string | null
     image?: string | null
     likeCount?: number
+    place?: string
     lat?: number | null
     lon?: number | null
+    category?: string
     published?: boolean
     authorId?: number | null
   }
 
   export type PostUpdateInput = {
-    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
-    content?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     likeCount?: IntFieldUpdateOperationsInput | number
+    place?: StringFieldUpdateOperationsInput | string
     lat?: NullableFloatFieldUpdateOperationsInput | number | null
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
+    category?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
     author?: UserUpdateOneWithoutPostsNestedInput
   }
 
   export type PostUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
-    content?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     likeCount?: IntFieldUpdateOperationsInput | number
+    place?: StringFieldUpdateOperationsInput | string
     lat?: NullableFloatFieldUpdateOperationsInput | number | null
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
+    category?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
     authorId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PostCreateManyInput = {
     id?: number
-    createAt?: Date | string
-    updateAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     title: string
-    content?: string | null
+    description?: string | null
     image?: string | null
     likeCount?: number
+    place?: string
     lat?: number | null
     lon?: number | null
+    category?: string
     published?: boolean
     authorId?: number | null
   }
 
   export type PostUpdateManyMutationInput = {
-    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
-    content?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     likeCount?: IntFieldUpdateOperationsInput | number
+    place?: StringFieldUpdateOperationsInput | string
     lat?: NullableFloatFieldUpdateOperationsInput | number | null
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
+    category?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PostUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
-    content?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     likeCount?: IntFieldUpdateOperationsInput | number
+    place?: StringFieldUpdateOperationsInput | string
     lat?: NullableFloatFieldUpdateOperationsInput | number | null
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
+    category?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
     authorId?: NullableIntFieldUpdateOperationsInput | number | null
   }
@@ -3595,14 +3645,16 @@ export namespace Prisma {
 
   export type PostCountOrderByAggregateInput = {
     id?: SortOrder
-    createAt?: SortOrder
-    updateAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     title?: SortOrder
-    content?: SortOrder
+    description?: SortOrder
     image?: SortOrder
     likeCount?: SortOrder
+    place?: SortOrder
     lat?: SortOrder
     lon?: SortOrder
+    category?: SortOrder
     published?: SortOrder
     authorId?: SortOrder
   }
@@ -3617,28 +3669,32 @@ export namespace Prisma {
 
   export type PostMaxOrderByAggregateInput = {
     id?: SortOrder
-    createAt?: SortOrder
-    updateAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     title?: SortOrder
-    content?: SortOrder
+    description?: SortOrder
     image?: SortOrder
     likeCount?: SortOrder
+    place?: SortOrder
     lat?: SortOrder
     lon?: SortOrder
+    category?: SortOrder
     published?: SortOrder
     authorId?: SortOrder
   }
 
   export type PostMinOrderByAggregateInput = {
     id?: SortOrder
-    createAt?: SortOrder
-    updateAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     title?: SortOrder
-    content?: SortOrder
+    description?: SortOrder
     image?: SortOrder
     likeCount?: SortOrder
+    place?: SortOrder
     lat?: SortOrder
     lon?: SortOrder
+    category?: SortOrder
     published?: SortOrder
     authorId?: SortOrder
   }
@@ -4018,27 +4074,31 @@ export namespace Prisma {
   }
 
   export type PostCreateWithoutAuthorInput = {
-    createAt?: Date | string
-    updateAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     title: string
-    content?: string | null
+    description?: string | null
     image?: string | null
     likeCount?: number
+    place?: string
     lat?: number | null
     lon?: number | null
+    category?: string
     published?: boolean
   }
 
   export type PostUncheckedCreateWithoutAuthorInput = {
     id?: number
-    createAt?: Date | string
-    updateAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     title: string
-    content?: string | null
+    description?: string | null
     image?: string | null
     likeCount?: number
+    place?: string
     lat?: number | null
     lon?: number | null
+    category?: string
     published?: boolean
   }
 
@@ -4073,14 +4133,16 @@ export namespace Prisma {
     OR?: PostScalarWhereInput[]
     NOT?: PostScalarWhereInput | PostScalarWhereInput[]
     id?: IntFilter<"Post"> | number
-    createAt?: DateTimeFilter<"Post"> | Date | string
-    updateAt?: DateTimeFilter<"Post"> | Date | string
+    createdAt?: DateTimeFilter<"Post"> | Date | string
+    updatedAt?: DateTimeFilter<"Post"> | Date | string
     title?: StringFilter<"Post"> | string
-    content?: StringNullableFilter<"Post"> | string | null
+    description?: StringNullableFilter<"Post"> | string | null
     image?: StringNullableFilter<"Post"> | string | null
     likeCount?: IntFilter<"Post"> | number
+    place?: StringFilter<"Post"> | string
     lat?: FloatNullableFilter<"Post"> | number | null
     lon?: FloatNullableFilter<"Post"> | number | null
+    category?: StringFilter<"Post"> | string
     published?: BoolFilter<"Post"> | boolean
     authorId?: IntNullableFilter<"Post"> | number | null
   }
@@ -4129,52 +4191,60 @@ export namespace Prisma {
 
   export type PostCreateManyAuthorInput = {
     id?: number
-    createAt?: Date | string
-    updateAt?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     title: string
-    content?: string | null
+    description?: string | null
     image?: string | null
     likeCount?: number
+    place?: string
     lat?: number | null
     lon?: number | null
+    category?: string
     published?: boolean
   }
 
   export type PostUpdateWithoutAuthorInput = {
-    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
-    content?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     likeCount?: IntFieldUpdateOperationsInput | number
+    place?: StringFieldUpdateOperationsInput | string
     lat?: NullableFloatFieldUpdateOperationsInput | number | null
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
+    category?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PostUncheckedUpdateWithoutAuthorInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
-    content?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     likeCount?: IntFieldUpdateOperationsInput | number
+    place?: StringFieldUpdateOperationsInput | string
     lat?: NullableFloatFieldUpdateOperationsInput | number | null
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
+    category?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PostUncheckedUpdateManyWithoutAuthorInput = {
     id?: IntFieldUpdateOperationsInput | number
-    createAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updateAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
-    content?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     likeCount?: IntFieldUpdateOperationsInput | number
+    place?: StringFieldUpdateOperationsInput | string
     lat?: NullableFloatFieldUpdateOperationsInput | number | null
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
+    category?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
   }
 

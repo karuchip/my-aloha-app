@@ -3,11 +3,11 @@ import prisma from "../../../../../utils/prisma"
 
 type Body = {
   title: string,
-  content: string,
+  place: string,
   image: string,
-  lat: number,
-  lon: number,
-  authorId: number
+  description: string,
+  category: string,
+  authorId: number,
 }
 
 export async function PUT(request: NextRequest, {params}:{params:{id:string}}) {
@@ -27,10 +27,11 @@ export async function PUT(request: NextRequest, {params}:{params:{id:string}}) {
           where: {id},
           data: {
             title: body.title,
-            content: body.content,
+            place: body.place,
             image: body.image,
-            lat: body.lat,
-            lon: body.lon,
+            description: body.description,
+            category: body.category,
+            authorId: 1,
           }
         })
         return NextResponse.json({message:"編集が完了しました"})
