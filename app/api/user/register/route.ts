@@ -3,19 +3,19 @@ import prisma from '../../../../utils/prisma'
 
 export async function POST(request:Request) {
   const body = await request.json()
-  console.log(body)
 
   try {
     const newUser = await prisma.user.create({
       data: {
+        name:body.name,
         email:body.email,
-        name:body.name
+        password:body.password
       }
     })
-    return NextResponse.json({success:true, register:newUser})
+    return NextResponse.json({message: 'ユーザー登録に成功しました'})
   }catch (error) {
     console.log('Prismaエラー:', error)
-    return NextResponse.json({message: '投稿に失敗しました'})
+    return NextResponse.json({message: 'ユーザー登録失敗しました'})
   }
 }
 

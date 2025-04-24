@@ -3,8 +3,8 @@ import { jwtVerify } from "jose"
 
 export async function middleware(request:NextRequest) {
 
-  // const token = await request.headers.get("Authorization")?.split(" ")[1]
-  const token = "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imhpa2FAaGlrYSIsImlkIjoxLCJleHAiOjE3NDQ4Nzk4ODF9.Iyq5j8sJEe-P6itUqb6M9RbxgxB8cGZrw_d4x5atPDQ"
+  const token = await request.headers.get("Authorization")?.split(" ")[1]
+  // const token = "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Imhpa2FAaGlrYSIsImlkIjoxLCJleHAiOjE3NDUzOTM3MDF9.QFc0puvBblyiM7ymDF7609GPYBXib5wSV4wCbyPtvhg"
 
   if(!token) {
     return NextResponse.json({message:"トークンがありません"})
@@ -15,6 +15,7 @@ export async function middleware(request:NextRequest) {
     const decodedJwt = await jwtVerify(token, secretKey)
     console.log("decodedJwt:", decodedJwt)
     return NextResponse.next()
+
   } catch(error) {
     console.error("認証エラー:", error)
     return NextResponse.json({message: "トークンが正しくないのでログインしてください"})

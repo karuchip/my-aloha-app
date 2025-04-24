@@ -7,15 +7,20 @@ type Params = {
   }
 }
 
-export async function GET(request: NextRequest, {params}: Params ) {
+export async function GET(
+  request: NextRequest,
+  {params}: Params
+ ) {
   const id = Number(params.id)
 
   try {
-    const singleItems = await prisma.post.findUnique({
-      where: {id}
+    const singleItem = await prisma.post.findUnique({
+      where: {id},
+      include:{
+        author: true
+      }
     })
-    console.log(singleItems);
-    return NextResponse.json({message: "シングルアイテム読み取り成功", singleItems:singleItems})
+    return NextResponse.json({message: "シングルアイテム読み取り成功", singleItem:singleItem})
 
   }catch (error) {
     console.error('Prismaエラー:', error)

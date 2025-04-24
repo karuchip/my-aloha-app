@@ -9,16 +9,15 @@ export async function POST(request: NextRequest) {
     const newPost = await prisma.post.create({
       data: {
         title: body.title,
-        content: body.content,
         image: body.image,
-        likeCount: body.likeCount,
-        lat: body.lat,
-        lon: body.lon,
+        description: body.description,
+        category: body.category,
+        place: body.place,
         published: body.published,
-        authorId: body.authorId,  // authorIdを直接渡す
+        authorId: body.authorId,
       }
     })
-    return NextResponse.json({ success: true, post: newPost })
+    return NextResponse.json({message: '投稿が完了しました'})
 
   } catch (error) {
     console.error('Prismaエラー:', error)
