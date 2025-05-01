@@ -1,0 +1,80 @@
+"use client"
+import dayjs from "dayjs"
+import {useState, useEffect} from "react"
+import { useAuthContext } from "../AuthContext";
+import CommentCreate from "../components/commentCreate"
+
+
+type AllCommentType = {
+  comment: string,
+  user:{
+    name: string
+  },
+  createdAt: Date
+}
+
+export const dynamic = "force-dynamic"
+
+const Comment = ({postId}:{postId:number}) => {
+  const {loginUserId, loading: authLoading} = useAuthContext()
+  const [allComments, setAllComments] = useState<AllCommentType[]>([])
+  const [commentLoading, setCommentLoading] = useState<boolean>(true)
+
+  const getAllComments = async()=>{
+    try {
+      const response = await fetch(`/api/comment/readAllComments/${postId}`)
+      const jsonData = await response.json()
+
+      if (jsonData.readAllComments) {
+        await setAllComments(jsonData.readAllComments)
+
+      } else {
+        setAllComments([])
+      }
+    }catch(error) {
+      console.error("コメントを取得できませんでした。", error)
+    }finally {
+      setCommentLoading(false)
+    }
+  }
+
+  useEffect(()=> {
+    getAllComments()
+  }, [])
+
+  //コメント作成完了後、loadingはtrue＋再度コメント全件取得
+  const handleCommentCreated = () => {
+    setCommentLoading(true)
+    getAllComments()
+  }
+
+  if (authLoading || commentLoading) {
+    return <p>読み込み中...</p>
+  }
+
+  return (
+    <div>
+      <h3>コメント</h3>
+      <div>
+        {allComments?.map(comment => (
+          <div key={comment.createdAt.toString()}>
+            <p>{comment.comment}</p>
+            <p>by {comment.user.name}</p>
+            <p>{dayjs(new Date(comment.createdAt)).format("YYYY/MM/DD HH:mm")}</p>
+          </div>
+        ))}
+      </div>
+      <div>
+        {loginUserId && (
+          <CommentCreate
+            loginUserId={loginUserId}
+            postId={postId}
+            onCommentCreated = {handleCommentCreated}
+          />
+        )}
+      </div>
+    </div>
+  )
+}
+
+export default Comment

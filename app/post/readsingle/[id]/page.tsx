@@ -1,6 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
 import dayjs from "dayjs"
+import LikeCount from "../../../components/likeCount"
+import Comment from "../../../components/comment"
 
 type Props = {
   params: {
@@ -28,6 +30,8 @@ type SingleItemTypes = {
   } | null
 }
 
+export const dynamic = "force-dynamic"
+
 export const getSingleItem = async(id: string) => {
   const response = await fetch(`http://localhost:3000/api/post/readsingle/${id}`)
   const jsonData = await response.json()
@@ -48,17 +52,19 @@ const ReadSingleItem = async({params}:Props) => {
   const updatedAtFormatted = dayjs(new Date(singleItem.updatedAt)).format("YYYY/MM/DD HH:mm")
   const postId = Number(singleItem.id)
 
+
+
   return(
     <div>
       <div>
         <Image src={singleItem.image} width={750} height={750} alt="item-image" priority />
       </div>
       <div>
-          <p>mahalo: {singleItem.likeCount}</p>
-          <div>
-            <div><Link href={`/post/update/${postId}`}>編集</Link></div>
-            <div><Link href={`/post/delete/${postId}`}>削除</Link></div>
-          </div>
+        <LikeCount likeCount={singleItem.likeCount} id={singleItem.id} />
+        <div>
+          <div><Link href={`/post/update/${postId}`}>編集</Link></div>
+          <div><Link href={`/post/delete/${postId}`}>削除</Link></div>
+        </div>
       </div>
       <div>
           <p>カテゴリー: {singleItem.category}</p>
@@ -75,6 +81,9 @@ const ReadSingleItem = async({params}:Props) => {
           <p>場所: {singleItem.place}</p>
           <p>経度: {singleItem.lat}</p>
           <p>緯度: {singleItem.lon}</p>
+      </div>
+      <div>
+        <Comment postId={singleItem.id}/>
       </div>
       <div><Link href={`/`}>一覧に戻る</Link></div>
     </div>

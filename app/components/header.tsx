@@ -3,7 +3,8 @@
 import Link from "next/link"
 import { useAuthContext } from "../AuthContext"
 
-
+//動的ファイルにて、データの更新時に直に更新する
+export const dynamic = "force-dynamic"
 
 const Header = () => {
   const {loginUserId} = useAuthContext()

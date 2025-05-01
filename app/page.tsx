@@ -24,9 +24,10 @@ type AllItemTypes = {
   } | null
 }
 
+export const dynamic = "force-dynamic"
 
 const ReadAllItems = () => {
-  const {loading} = useAuth()
+  const {loading} = useAuth(false)
   const [allItems, setAllItems] = useState<AllItemTypes[]>([])
 
   useEffect(() => {
