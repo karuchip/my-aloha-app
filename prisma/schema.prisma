@@ -21,6 +21,8 @@ model User {
   name      String
   password  String
   posts     Post[]
+  postLikes     PostLikes[]
+  postComments  PostComments[]
 }
 
 model Post {
@@ -38,4 +40,32 @@ model Post {
   published Boolean    @default(false)
   author    User?      @relation(fields: [authorId], references: [id])
   authorId  Int?
+  likes     PostLikes[]
+  comments  PostComments[]
 }
+
+model PostLikes {
+  id      Int         @id @default(autoincrement())
+  post    Post        @relation(fields: [postId], references: [id])
+  postId  Int
+  user    User        @relation(fields: [userId], references: [id])
+  userId  Int
+  createdAt DateTime  @default(now())
+
+  @@unique([postId, userId])
+}
+
+model PostComments {
+  commentId   Int     @id @default(autoincrement())
+  comment     String  @db.VarChar(100)
+  post        Post    @relation(fields:[postId], references:[id])
+  postId      Int
+  user        User    @relation(fields:[userId], references:[id])
+  userId      Int
+  createdAt   DateTime  @default(now())
+
+}
+
+
+
+
