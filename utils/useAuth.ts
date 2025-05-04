@@ -9,8 +9,10 @@ const useAuth = (shouldRedirect = true) => {
   const router = useRouter()
   const {
     loginUserId,
+    loginUserName,
     loginUserEmail,
     setLoginUserId,
+    setLoginUserName,
     setLoginUserEmail
   } = useAuthContext()
   const {loading, setLoading} = useAuthContext()
@@ -30,8 +32,9 @@ const useAuth = (shouldRedirect = true) => {
       try {
         const secretKey = new TextEncoder().encode("my-aloha-app-book")
         const decodedJwt = await jwtVerify(token, secretKey)
-        const payload = decodedJwt.payload as {email: string, id:string}
+        const payload = decodedJwt.payload as {email: string, name: string, id:string}
         setLoginUserEmail(payload.email)
+        setLoginUserName(payload.name)
         setLoginUserId(payload.id)
       }catch(error) {
         console.error("トークン検証失敗:", error)
@@ -43,12 +46,14 @@ const useAuth = (shouldRedirect = true) => {
 
     checkToken()
 
-  }, [router, shouldRedirect, setLoginUserEmail, setLoginUserId])
+  }, [router, shouldRedirect, setLoginUserEmail, setLoginUserName, setLoginUserId])
 
   return {
     loginUserEmail,
+    loginUserName,
     loginUserId,
     setLoginUserEmail,
+    setLoginUserName,
     setLoginUserId,
     loading,
     setLoading

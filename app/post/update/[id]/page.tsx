@@ -2,11 +2,10 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { useEffect } from "react"
-import {useState} from "react"
+import {useState, useEffect, Suspense} from "react"
 import {useRouter}from "next/navigation"
 import { useAuthContext } from "@/app/AuthContext"
-import ImgInput from "@/app/components/imgInput"
+import PlaceAutocomplete from "../../../components/placeAutocomplete"
 
 type Props = {
   params:{
@@ -19,6 +18,8 @@ const UpdateItem = ({params}:Props) => {
   const [postId, setPostId] = useState("")
   const [title, setTitle] = useState("")
   const [place, setPlace] = useState("")
+  const [lat, setLat] = useState<number | null>(null)
+  const [lng, setLng] = useState<number | null>(null)
   const [image, setImage] = useState("")
   const [description, setDescription] = useState("")
   const [category, setCategory] = useState("")
@@ -27,6 +28,13 @@ const UpdateItem = ({params}:Props) => {
 
   const router = useRouter()
   const {loginUserId} = useAuthContext()
+
+  //場所autocomplete機能
+  const handleSelectPlace = (lat: number, lng: number, name:string) => {
+    setLat(isNaN(lat) ? null : lat)
+    setLng(isNaN(lng) ? null : lng)
+    setPlace(name)
+  }
 
   //ページを開いたときの処理
   useEffect(() => {
@@ -74,6 +82,8 @@ const UpdateItem = ({params}:Props) => {
         body: JSON.stringify({
           title: title,
           place: place,
+          lat: lat,
+          lon: lng,
           image: image,
           description: description,
           category: category,
@@ -97,10 +107,11 @@ const UpdateItem = ({params}:Props) => {
             <label htmlFor="createTitle">タイトル</label>
             <input value={title} onChange={(e)=>setTitle(e.target.value)} type="text" name="title" placeholder="タイトル" id="createTitle" required />
 
-            <label htmlFor="createPlace">場所</label>
-            <input value={place} onChange={(e)=>setPlace(e.target.value)} type="text" name="place" placeholder="場所" id="createPlace" required />
-
-
+            <label>場所
+              <Suspense fallback={<div>場所を読み込み中...</div>}>
+                <PlaceAutocomplete onSelectPlace={handleSelectPlace} defaultPlace={place}/>
+              </Suspense>
+            </label>
 
             <label htmlFor="createContent">詳細</label>
             <input value={description} onChange={(e=>setDescription(e.target.value))} type="text" name="description" placeholder="内容" id="createContent" required />

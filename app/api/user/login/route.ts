@@ -16,7 +16,6 @@ export async function POST (request:NextRequest){
     const isSavedUserData = await prisma.user.findUnique({
       where: {email: body.email}
     })
-    console.log(isSavedUserData)
 
     //メールアドレスが登録されているかどうか
     if (isSavedUserData) {
@@ -27,6 +26,7 @@ export async function POST (request:NextRequest){
         const secretKey = new TextEncoder().encode("my-aloha-app-book")
         const payload = {
           email: body.email,
+          name: isSavedUserData.name,
           id: isSavedUserData.id
         }
 

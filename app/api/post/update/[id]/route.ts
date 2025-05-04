@@ -4,6 +4,8 @@ import prisma from "../../../../../utils/prisma"
 type Body = {
   title: string,
   place: string,
+  lat: number,
+  lon: number,
   image: string,
   description: string,
   category: string,
@@ -28,6 +30,8 @@ export async function PUT(request: NextRequest, {params}:{params:{id:string}}) {
           data: {
             title: body.title,
             place: body.place,
+            lat: body.lat,
+            lon: body.lon,
             image: body.image,
             description: body.description,
             category: body.category,
