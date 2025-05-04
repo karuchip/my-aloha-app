@@ -7,7 +7,7 @@ import { useAuthContext } from "../AuthContext"
 export const dynamic = "force-dynamic"
 
 const Header = () => {
-  const {loginUserId, loginUserName} = useAuthContext()
+  const {loginUserId} = useAuthContext()
 
     return (
       <header>
@@ -23,7 +23,6 @@ const Header = () => {
             </>
           ):(
             <>
-              <p>(ログイン中) {loginUserName} さん</p>
               <Link href="/post/create">投稿する</Link>
               <Link href="/user/logout">ログアウト</Link>
             </>

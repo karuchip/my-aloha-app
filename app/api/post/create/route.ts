@@ -15,8 +15,6 @@ export async function POST(request: NextRequest) {
         place: body.place,
         published: body.published,
         authorId: body.authorId,
-        lat: body.lat,
-        lon: body.lon
       }
     })
     return NextResponse.json({message: '投稿が完了しました'})

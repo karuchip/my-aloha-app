@@ -7,7 +7,6 @@ import Footer from "./components/footer"
 import { AuthProvider } from "./AuthContext"
 import useAuth from "@/utils/useAuth"
 
-
 const RootLayout = ({children}:{children:ReactNode}) => {
   useAuth(false)
 

@@ -13,7 +13,7 @@ const Login = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const router = useRouter()
-  const {setLoginUserId, setLoginUserName, setLoginUserEmail} = useAuthContext()
+  const {setLoginUserId, setLoginUserEmail} = useAuthContext()
 
   const handleSubmit = async(e:React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -36,9 +36,9 @@ const Login = () => {
       const jsonData = await response.json()
       localStorage.setItem("token", jsonData.token)
 
-      setLoginUserId(jsonData.payload.id)
-      setLoginUserName(jsonData.payload.name)
       setLoginUserEmail(jsonData.payload.email)
+      setLoginUserId(jsonData.payload.id)
+
       alert(jsonData.message)
       router.replace("/")
 

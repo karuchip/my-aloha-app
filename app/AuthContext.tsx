@@ -7,8 +7,6 @@ type AuthContextType = {
   setLoginUserId: (id: string | null) => void,
   loginUserEmail: string | null,
   setLoginUserEmail: (email: string | null) => void,
-  loginUserName: string | null,
-  setLoginUserName: (name: string | null) => void,
   loading: boolean,
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -17,8 +15,6 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType> ({
   loginUserId: null,
   setLoginUserId: () => {},
-  loginUserName: null,
-  setLoginUserName: () => {},
   loginUserEmail: null,
   setLoginUserEmail: () => {},
   loading: true,
@@ -28,12 +24,11 @@ const AuthContext = createContext<AuthContextType> ({
 //Providerの定義
 export const AuthProvider = ({children}:{children: ReactNode}) => {
   const [loginUserId, setLoginUserId] = useState<string | null>(null)
-  const [loginUserName, setLoginUserName] = useState<string | null>(null)
   const [loginUserEmail, setLoginUserEmail] = useState<string | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
 
   return (
-    <AuthContext.Provider value={{ loginUserId, setLoginUserId, loginUserName, setLoginUserName, loginUserEmail, setLoginUserEmail, loading, setLoading }}>
+    <AuthContext.Provider value={{ loginUserId, setLoginUserId, loginUserEmail, setLoginUserEmail, loading, setLoading }}>
       {children}
     </AuthContext.Provider>
   )
