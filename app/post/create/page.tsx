@@ -6,6 +6,7 @@ import {useRouter} from "next/navigation"
 import { useAuthContext } from "@/app/AuthContext"
 //画像ダウンロードapi
 import ImgInput from "../../components/imgInput"
+import PlaceAutocomplete from "../../components/placeAutocomplete"
 
 const CreateItem = () => {
 
@@ -14,6 +15,8 @@ const CreateItem = () => {
   const [image, setImage] = useState("")
   const [description, setDescription] = useState("")
   const [category, setCategory] = useState("")
+  const [lat, setLat] = useState<number | null>(null)
+  const [lng, setLng] = useState<number | null>(null)
 
   //アイテム作成後、画面遷移する
   const router = useRouter()
@@ -22,7 +25,9 @@ const CreateItem = () => {
 
   const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-  try {
+    try {
+
+
       const response = await fetch("http://localhost:3000/api/post/create", {
         method: "POST",
         headers:{
@@ -35,6 +40,8 @@ const CreateItem = () => {
           image: image,
           description: description,
           category: category,
+          lat: lat,
+          lon: lng,
           place: place,
           published: true,
           authorId: loginUserId
@@ -48,7 +55,12 @@ const CreateItem = () => {
     } catch(error) {
       alert("アイテム作成失敗")
     }
+  }
 
+  const handleSelectPlace = (lat: number, lng: number, name:string) => {
+    setLat(isNaN(lat) ? null : lat)
+    setLng(isNaN(lng) ? null : lng)
+    setPlace(name)
   }
 
   //loginUserId にトークン解析から取得したidがある場合にのみreturn
@@ -60,9 +72,6 @@ const CreateItem = () => {
         <form onSubmit={handleSubmit}>
           <label htmlFor="createTitle">タイトル</label>
           <input value={title} onChange={(e)=>setTitle(e.target.value)} type="text" name="title" placeholder="タイトル" id="createTitle" required />
-
-          <label htmlFor="createPlace">場所</label>
-          <input value={place} onChange={(e)=>setPlace(e.target.value)} type="text" name="place" placeholder="場所" id="createPlace" required />
 
           <label htmlFor="createImage">画像</label>
           <ImgInput setImage={setImage}/>
@@ -95,7 +104,9 @@ const CreateItem = () => {
             <label htmlFor="categoryOther">その他</label>
           </div>
 
-          <button>作成</button>
+          <PlaceAutocomplete onSelectPlace={handleSelectPlace} />
+
+          <button type="submit">投稿する</button>
 
         </form>
       </div>

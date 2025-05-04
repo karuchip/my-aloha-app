@@ -17,6 +17,7 @@ type AllItemTypes = {
   lon: number,
   place: string,
   published: boolean,
+  category: string,
   authorId: number,
   author: {
     id: number,
@@ -29,6 +30,9 @@ export const dynamic = "force-dynamic"
 const ReadAllItems = () => {
   const {loading} = useAuth(false)
   const [allItems, setAllItems] = useState<AllItemTypes[]>([])
+
+  const [selectCategory, setSelectCategory] = useState<string|null> (null)
+  const [searchWord, setSearchWord] = useState("")
 
   useEffect(() => {
     const fetchData = async()=>{
@@ -45,29 +49,54 @@ const ReadAllItems = () => {
   }
   return(
     <div>
-      {allItems.map(item => {
-        const createdAtFormatted = dayjs(new Date(item.createdAt)).format("YYYY/MM/DD HH:mm")
-        const updatedAtFormatted = dayjs(new Date(item.updatedAt)).format("YYYY/MM/DD HH:mm")
+      {/* カテゴリー */}
+      <div>
+        <button onClick={()=> setSelectCategory(null)}>All</button>
+        <button onClick={()=> setSelectCategory("food")}>食べ物</button>
+        <button onClick={()=> setSelectCategory("activity")}>アクティビティ</button>
+        <button onClick={()=> setSelectCategory("shopping")}>買い物</button>
+        <button onClick={()=> setSelectCategory("place")}>場所</button>
+        <button onClick={()=> setSelectCategory("culture")}>文化</button>
+        <button onClick={()=> setSelectCategory("nature")}>自然</button>
+        <button onClick={()=> setSelectCategory("other")}>その他</button>
+      </div>
 
-        return(
+      {/* 検索 */}
+      <div>
+        <input type="text" onChange={(e) => setSearchWord(e.target.value)} placeholder="search" />
+      </div>
 
-          <Link href={`/post/readsingle/${item.id}`} key={item.id}>
-            <Image src={item.image} alt="item-image" width={300} height={300} priority></Image>
-            <p>mahalo: {item.likeCount}</p>
-            <h2>{item.title}</h2>
-            <p>{item.content}</p>
-            {/* <p>作成日: {createdAtFormatted}</p> */}
-            <p>更新日: {updatedAtFormatted}</p>
-            {item.author? (
-              <p>作者: {item.author.name}</p>
-            ):(
-              <p>作者: 不明</p>
-
-            )}
-            <p>場所: {item.place}</p>
-          </Link>
+      {/* 一覧表示 */}
+      <div>
+        {allItems
+          .filter(item =>
+            (!selectCategory || item.category === selectCategory) &&
+            (!searchWord || item.title?.toLowerCase().includes(searchWord.toLowerCase()) || item.content?.toLowerCase().includes(searchWord.toLowerCase()))
           )
-      })}
+          .map(item => {
+            const createdAtFormatted = dayjs(new Date(item.createdAt)).format("YYYY/MM/DD HH:mm")
+            const updatedAtFormatted = dayjs(new Date(item.updatedAt)).format("YYYY/MM/DD HH:mm")
+
+            return(
+
+              <Link href={`/post/readsingle/${item.id}`} key={item.id}>
+                <Image src={item.image} alt="item-image" width={300} height={300} priority></Image>
+                <p>mahalo: {item.likeCount}</p>
+                <p>{item.category}</p>
+                <h2>{item.title}</h2>
+                <p>{item.content}</p>
+                <p>更新日: {updatedAtFormatted}</p>
+                {item.author? (
+                  <p>作者: {item.author.name}</p>
+                ):(
+                  <p>作者: 不明</p>
+
+                )}
+                <p>場所: {item.place}</p>
+              </Link>
+              )
+        })}
+      </div>
     </div>
   )
 

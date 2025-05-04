@@ -1,8 +1,10 @@
 import Image from "next/image"
 import Link from "next/link"
 import dayjs from "dayjs"
+import { Suspense } from "react"
 import LikeCount from "../../../components/likeCount"
 import Comment from "../../../components/comment"
+import GoogleMap from "../../../components/googleMap"
 
 type Props = {
   params: {
@@ -78,12 +80,17 @@ const ReadSingleItem = async({params}:Props) => {
             <p>作者: 未定</p>
 
           )}
+          <h3>Location</h3>
           <p>場所: {singleItem.place}</p>
-          <p>経度: {singleItem.lat}</p>
-          <p>緯度: {singleItem.lon}</p>
+          <Suspense fallback={<div>地図を読み込み中...</div>}>
+            <GoogleMap lat={singleItem.lat} lng={singleItem.lon}/>
+          </Suspense>
+
       </div>
       <div>
-        <Comment postId={singleItem.id}/>
+        <Suspense fallback={<div>コメントを読み込み中...</div>}>
+          <Comment postId={singleItem.id}/>
+        </Suspense>
       </div>
       <div><Link href={`/`}>一覧に戻る</Link></div>
     </div>
