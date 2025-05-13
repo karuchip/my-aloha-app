@@ -54,13 +54,11 @@ const Comment = ({postId}:{postId:number}) => {
 
   return (
     <div>
-      <h3>コメント</h3>
       <div>
         {allComments?.map(comment => (
           <div key={comment.createdAt.toString()}>
-            <p>{comment.comment}</p>
-            <p>by {comment.user.name}</p>
-            <p>{dayjs(new Date(comment.createdAt)).format("YYYY/MM/DD HH:mm")}</p>
+            <p>{dayjs(new Date(comment.createdAt)).format("YYYY/MM/DD HH:mm")}    <span style={{color:"#5a8c68"}}>by {comment.user.name}</span></p>
+            <p style={{fontSize:"18px", paddingBottom:"15px"}}>{comment.comment}</p>
           </div>
         ))}
       </div>

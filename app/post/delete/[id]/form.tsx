@@ -4,6 +4,7 @@ import {useRouter} from "next/navigation"
 import Image from "next/image"
 import { useAuthContext } from "@/app/AuthContext"
 import Link from "next/link"
+import { Button } from "@mui/material"
 
 
 type Props = {
@@ -51,20 +52,35 @@ const DeleteItem = ({id, singleItem}:Props) => {
     }
   }
 
+
   if(Number(loginUserId) ===  singleItem.authorId) {
 
     return(
       <div>
         <form onSubmit={handleSubmit}>
-            <Image alt="画像" src={singleItem.image} width={750} height={750} />
-            <h2>{singleItem.title}</h2>
-            <p>{singleItem.description}</p>
-            <p>場所: {singleItem.place}</p>
-            <p>カテゴリー: {singleItem.category}</p>
+            <div className="deleteImage">
+              <Image alt="画像" src={singleItem.image} width={300} height={300} />
+            </div>
+            <div className="deleteItem">
+              <h2>{singleItem.title}</h2>
+              <p>{singleItem.description}</p>
+            </div>
+              <p>📍 {singleItem.place}</p>
+              <p>🏷️ カテゴリー: {singleItem.category}</p>
 
-            <button>削除</button>
-
+            <div style={{display:"flex", justifyContent:"center"}}>
+              <Button type="submit" variant="contained" color="primary"
+                sx={{
+                  borderRadius: "30px", padding: "10px 24px", marginTop: "30px",
+                  backgroundColor: "#f06543", '&:hover': { backgroundColor: "#F05143" }
+                }}>
+                削除
+              </Button>
+            </div>
         </form>
+        <div className="backToList">
+          <Link href={"/readsingle/${postId}"}>戻る</Link>
+        </div>
       </div>
     )
 

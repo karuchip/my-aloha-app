@@ -1,5 +1,7 @@
 "use client"
 import {useState} from "react"
+import {Card, TextField, Button} from "@mui/material"
+
 
 type SendBodyType = {
   name: string,
@@ -39,15 +41,52 @@ const Register = () => {
   }
 
   return(
-    <div>
-      <h1>ユーザー登録</h1>
+    <div className="authContainer">
+      <Card variant="outlined" className="authContent">
+        <h2>ユーザー登録</h2>
 
-      <form onSubmit={handleSubmit}>
-        <input value={name} onChange={(e)=>setName(e.target.value)} type="text" name="name" placeholder="名前" required />
-        <input value={email} onChange={(e)=>setEmail(e.target.value)} type="text" name="email" placeholder="メールアドレス" required />
-        <input value={password} onChange={(e)=>setPassword(e.target.value)} type="text" name="password" placeholder="パスワード" required />
-        <button>登録</button>
-      </form>
+        <form onSubmit={handleSubmit}>
+          <div className="userFormItem">
+            {/* <input value={email} onChange={(e)=>setEmail(e.target.value)} type="text" name="email" placeholder="email"/> */}
+            <TextField
+              type="text"
+              value={name}
+              onChange={(e)=>setName(e.target.value)}
+              name="name"
+              id="standard-basic"
+              label="ニックネーム"
+              variant="standard"
+              className="userFormInput"
+            />
+            <TextField
+              type="email"
+              value={email}
+              onChange={(e)=>setEmail(e.target.value)}
+              name="email"
+              id="standard-basic"
+              label="メールアドレス"
+              variant="standard"
+              className="userFormInput"
+            />
+          </div>
+          <div className="userFormItem">
+            <TextField
+              type="password"
+              value={password}
+              onChange={(e)=>setPassword(e.target.value)}
+              name="password"
+              id="standard-basic"
+              label="パスワード"
+              variant="standard"
+              className="userFormInput"
+            />
+          </div>
+          <div className="userAuthBtn">
+            <Button type="submit" variant="contained">登録</Button>
+          </div>
+
+        </form>
+      </Card>
     </div>
   )
 }

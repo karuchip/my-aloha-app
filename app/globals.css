@@ -1,0 +1,324 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+h1, h2, p, a, ul, li, span{
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* header */
+header {
+  background-color: #66c7d9;
+  color: #ffffff;
+  width: 100%;
+}
+.headerLogo{
+  color: white;
+}
+.headerContainer {
+  padding: 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end
+}
+.headerRight {
+  text-align: right;
+}
+.headerRight p {
+  margin-bottom: 18px;
+}
+.headerRight a {
+  margin-left: 20px;
+  color: #fff;
+  display: inline-block;
+}
+.createPostBtn {
+  background-color: #f06543;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 8px;
+  font-weight: 700;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 255, 0.2);
+}
+.notLoginNav a{
+  border-bottom: 1px solid #fff;
+}
+.notLoginNav a:hover {
+  font-weight: bold;
+}
+@media screen and (max-width: 720px) {
+  .headerLogo{
+    font-size: 30px;
+  }
+  .headerContainer {
+    padding: 10px 10px;
+  }
+  .logoSub {
+    display: none;
+  }
+  .headerRight p {
+    font-size: 14px;
+  }
+  .headerRight a {
+    margin-left: 14px;
+    font-size: 14px;
+  }
+  .logoutBtn {
+    border-bottom: 1px solid #fff;
+    font-weight: bold;
+
+  }
+}
+
+
+
+/* footer */
+footer {
+  background-color: #f7f5ec;
+  color: #5a8c68;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.footerContainer {
+  width: fit-content;
+  padding-top: 20px;
+}
+
+
+/* header, footerを除くbody */
+.mainContainer {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+/* 一覧に戻る */
+.backToList {
+  width: fit-content;
+  margin: 20px auto;
+}
+.backToList a {
+  color: #f06543;
+  border-bottom: 1px solid #f06543;
+}
+
+
+/* like数表示 (/app/page.tsx)*/
+.likePosition {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+.hasLiked {
+  color :hotpink;
+}
+.hasNotLiked {
+  color: gray;
+}
+
+/* likeボタン (/components/likeCount.tsx) */
+.mahaloBtn {
+  margin: 10px 0 0 auto;
+  background-color: #fff;
+  width: fit-content;
+  border-radius: 10px;
+  padding: 5px 10px;
+  color: hotpink;
+  border: 2px solid hotpink;
+  font-weight: 700;
+  position: relative;
+}
+.mahaloBtn:hover{
+  color: #ca2b80;
+  border: 2px solid #ca2b80;
+}
+.mahaloDisBtn {
+  margin: 10px 0 0 auto;
+  background-color: hotpink;
+  width: fit-content;
+  border-radius: 10px;
+  padding: 5px 10px;
+  color: #fff;
+  border: 1px solid hotpink;
+  font-weight: 700;
+}
+
+/* 1投稿表示ページ(/readsingle/[id]/page.tsx)のlikeボタンと更新日のラベル部分 */
+.operationButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+/* 1投稿表示ページ(/readsingle/[id]/page.tsx)の投稿削除ボタン */
+.editDeleteButton {
+  display: flex;
+  width: fit-content;
+  margin: 30px auto;
+  gap: 30px;
+}
+.editDeleteButton a {
+  background-color: #f06543;
+  border-radius: 5px;
+  color: #ffffff;
+  display: inline-block;
+  width: 80px;
+  height: 30px;
+  align-content: center;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 5px;
+}
+.editDeleteButton a:hover{
+  background-color: #d9512d;
+}
+
+/* １投稿表示 */
+.singleItemContainer {
+  position:relative;
+}
+.postContent {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 1rem;
+  border-radius: 1rem;
+  position: absolute;
+  top: 40px;
+  width: 80vw;
+  font-weight: 700;
+}
+.editedDay p{
+  font-size: 14px;
+  color: #5a8c68;
+  margin-bottom: 5px;
+}
+.postContent h1 {
+  font-size: 32px;
+  color: #5a8c68;
+}
+.postContent p {
+  margin-bottom: 20px;
+}
+.postContent p:nth-child(2) {
+  color:#5a8c68;
+}
+.postContent p:nth-child(3) {
+  font-size: 18px;
+}
+
+
+
+/* ログイン画面(login/pages.tsx) and 新規登録画面(register/pages.tsx)　 */
+.authContainer {
+  height: 75vh;
+}
+.authContent {
+  margin: 50px auto;
+  width: 400px;
+  padding-bottom: 30px;
+}
+.authContent h2{
+  width: fit-content;
+  margin: 30px auto;
+
+}
+.userFormItem {
+  width: 70%;
+  margin: 30px auto;
+}
+.authContent input {
+  width: 100%;
+  height: 40px;
+  padding: 5px;
+  margin-top: 5px;
+  font-size: 18px;
+}
+.userFormInput {
+  width: 100%;
+}
+.userAuthBtn {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+
+/* 投稿作成画面 create.tsx */
+.postFormWrapper {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 32px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+.postFormWrapper h1 {
+  margin: 0 0 30px 0;
+}
+.selectCategory {
+  margin: 30px 0;
+}
+.selectCategory p {
+  font-weight: 700;
+}
+.selectImage {
+  margin: 30px 0;
+}
+.selectImage p {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.selectImageBox {
+  height: 50px;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  box-shadow: none;
+  border: 1px solid #c1c1c1;
+}
+.selectPlace p {
+  font-weight: 700;
+}
+.viewImage p {
+  margin-top: 50px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+.imagePreview {
+  display: flex;
+  justify-content: center;
+}
+.imagePreview img {
+  border-radius: 20px;
+  margin-top: 10px;
+}
+
+/* 削除ページ */
+/* /delete/[id]/pages.tsx */
+.deleteConfirmMsg h1 {
+  font-size: 26px;
+  margin-bottom: 5px;
+}
+.deleteConfirmMsg p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: red;
+}
+/* /delete/[id]/form.tsx */
+.deleteConfirmItem {
+  margin-bottom: 20px;
+}
+.deleteImage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.deleteItem {
+  margin: 20px 0;
+}

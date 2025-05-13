@@ -16,6 +16,12 @@ export async function DELETE(request: NextRequest, {params}:{params:{id:string}}
 
     if (singleItem){
       if (singleItem.authorId === body.authorId) {
+
+        // 関連レコードの削除
+        await prisma.postLikes.deleteMany({where: {postId:id}});
+        await prisma.postComments.deleteMany({where:{postId: id}});
+
+        //postテーブルから該当投稿を削除
         await prisma.post.delete({
           where: {id}
         })
