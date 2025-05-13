@@ -4,6 +4,7 @@ import prisma from "@/utils/prisma";
 export async function POST(request:NextRequest) {
 
   try {
+    console.log("コメント投稿のバックエンドが動きました！！")
     const body = await request.json()
     const newComment =  await prisma.postComments.create({
       data: {

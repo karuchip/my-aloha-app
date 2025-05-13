@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { TextField, Button } from "@mui/material";
 
 type commentType = {
   loginUserId: string,
@@ -12,7 +13,7 @@ const CommentCreate = ({loginUserId, postId, onCommentCreated}:commentType)=>{
 
   const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault()
-
+    console.log("コメントボタンが押されました")
     try{
       const response = await fetch (`/api/comment/createComment/${postId}`, {
         method: "POST",
@@ -40,10 +41,16 @@ const CommentCreate = ({loginUserId, postId, onCommentCreated}:commentType)=>{
 
   return(
 
-      <div>
+      <div style={{display:"flex", justifyContent:"center"}}>
         <form onSubmit={handleSubmit}>
-          <input type="text" value={comment} onChange={(e)=>setComment(e.target.value)}/>
-          <button type="submit">コメントを追加</button>
+            <TextField
+              label="コメントを書く"
+              variant="standard"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              sx={{width: "70vw"}}
+              />
+          <Button type="submit" variant="contained" sx={{margin:"10px 0 0 10px"}}>追加</Button>
         </form>
       </div>
   )

@@ -2,6 +2,7 @@
 import {useState} from "react"
 import { useRouter } from "next/navigation"
 import { useAuthContext } from "@/app/AuthContext"
+import {Card, TextField, Button} from "@mui/material"
 
 type SendBodyType = {
   email: string,
@@ -24,6 +25,8 @@ const Login = () => {
     }
 
     try{
+      console.log(email);
+      console.log(password);
       const response = await fetch("http://localhost:3000/api/user/login", {
         method:"POST",
         headers:{
@@ -49,13 +52,40 @@ const Login = () => {
   }
 
   return(
-    <div>
-      <h1>ログイン</h1>
-      <form onSubmit={handleSubmit}>
-        <input value={email} onChange={(e)=>setEmail(e.target.value)} type="text" name="email" placeholder="メールアドレス"/>
-        <input value={password} onChange={(e)=>setPassword(e.target.value)} type="text" name="password" placeholder="パスワード"/>
-        <button>ログイン</button>
-      </form>
+    <div className="authContainer">
+      <Card variant="outlined" className="authContent">
+        <h2>ログイン</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="userFormItem">
+            {/* <input value={email} onChange={(e)=>setEmail(e.target.value)} type="text" name="email" placeholder="email"/> */}
+            <TextField
+              type="email"
+              value={email}
+              onChange={(e)=>setEmail(e.target.value)}
+              name="email"
+              id="standard-basic"
+              label="メールアドレス"
+              variant="standard"
+              className="userFormInput"
+            />
+          </div>
+          <div className="userFormItem">
+            <TextField
+              type="password"
+              value={password}
+              onChange={(e)=>setPassword(e.target.value)}
+              name="password"
+              id="standard-basic"
+              label="パスワード"
+              variant="standard"
+              className="userFormInput"
+            />
+          </div>
+          <div className="userAuthBtn">
+            <Button type="submit" variant="contained">ログイン</Button>
+          </div>
+        </form>
+      </Card>
     </div>
   )
 }

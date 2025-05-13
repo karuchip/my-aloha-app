@@ -14,15 +14,15 @@ const GoogleMapComponent = ({lat, lng}:propsType) => {
   }
 
   if(lat===null || lng === null) {
-    return <p>位置情報は未設定です</p>
+    return <p>位置情報が未設定です</p>
   }
 
   return (
   <APIProvider apiKey={apikey}>
     <Map
-      style={{width: '40vw', height: '25vw'}}
+      style={{width: '100vw', height: '40vw'}}
       defaultCenter={{lat, lng}}
-      defaultZoom={12}
+      defaultZoom={15}
       gestureHandling='greedy'
       disableDefaultUI={true}
     >

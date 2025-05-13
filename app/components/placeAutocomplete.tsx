@@ -10,11 +10,10 @@ type Props = {
 
 const PlaceAutocomplete = ({ onSelectPlace, defaultPlace }: Props) => {
   const inputRef = useRef<HTMLInputElement | null>(null)
-  const [loaded, setLoaded] = useState(false)
   const [place, setPlace] = useState<string | null>("")
 
   useEffect(() => {
-    if (!window.google || !loaded) return
+    if (!window.google) return
     if (inputRef.current) {
       const autocomplete = new window.google.maps.places.Autocomplete(inputRef.current!, {
         types: ["geocode"],
@@ -36,7 +35,7 @@ const PlaceAutocomplete = ({ onSelectPlace, defaultPlace }: Props) => {
         }
       })
     }
-  }, [loaded])
+  }, [])
 
   useEffect(() => {
     setPlace(defaultPlace)
@@ -44,21 +43,15 @@ const PlaceAutocomplete = ({ onSelectPlace, defaultPlace }: Props) => {
 
   return (
     <>
-      {/* Google Maps APIのスクリプトをここで読み込む */}
-      <Script
-        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}&libraries=places`}
-        strategy="afterInteractive"
-        onLoad={() => setLoaded(true)}
-      />
-
       <div>
         <input
           ref={inputRef}
           type="text"
           placeholder="場所を検索"
-          style={{width: "500px", height: "30px"}}
+          style={{width: "100%", height: "50px", padding:"10px", marginTop:"10px", borderRadius:"5px", boxShadow:"none", border:"1px solid #C1C1C1"}}
           value={place ?? ""}
           onChange={(e) => setPlace(e.target.value)}
+
         />
       </div>
     </>

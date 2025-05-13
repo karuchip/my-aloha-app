@@ -5,6 +5,9 @@ import { Suspense } from "react"
 import LikeCount from "../../../components/likeCount"
 import Comment from "../../../components/comment"
 import GoogleMap from "../../../components/googleMap"
+import {Paper} from "@mui/material"
+import {Typography} from "@mui/material"
+
 
 type Props = {
   params: {
@@ -57,42 +60,85 @@ const ReadSingleItem = async({params}:Props) => {
 
 
   return(
-    <div>
-      <div>
-        <Image src={singleItem.image} width={750} height={750} alt="item-image" priority />
+    <div className="singleItemContainer">
+      <div style={{ position: 'relative', width: '100%', height: '600px' }}>
+        <Image
+          src={singleItem.image}
+          alt="item-image"
+          fill
+          style={{ objectFit: 'cover' }}
+          priority
+        />
       </div>
-      <div>
-        <LikeCount likeCount={singleItem.likeCount} id={singleItem.id} />
-        <div>
-          <div><Link href={`/post/update/${postId}`}>編集</Link></div>
-          <div><Link href={`/post/delete/${postId}`}>削除</Link></div>
+      <div style={{width:"80vw", margin:"20px auto"}}>
+        <div className="operationButtons">
+          <LikeCount likeCount={singleItem.likeCount} id={singleItem.id} />
+          <div className="editedDay">
+            <p>作成日: {createdAtFormatted}</p>
+            <p>更新日: {updatedAtFormatted}</p>
+          </div>
+        </div>
+        <div className="postContent">
+            <h1>{singleItem.title}</h1>
+            {singleItem.author? (
+              <p>by {singleItem.author.name}</p>
+            ):(
+              <p>by 未定</p>
+            )}
+            <p>{singleItem.description}</p>
         </div>
       </div>
-      <div>
-          <p>カテゴリー: {singleItem.category}</p>
-          <h2>{singleItem.title}</h2>
-          <p>{singleItem.description}</p>
-          <p>作成日: {createdAtFormatted}</p>
-          <p>更新日: {updatedAtFormatted}</p>
-          {singleItem.author? (
-            <p>作者: {singleItem.author.name}</p>
-          ):(
-            <p>作者: 未定</p>
 
-          )}
-          <h3>Location</h3>
-          <p>場所: {singleItem.place}</p>
-          <Suspense fallback={<div>地図を読み込み中...</div>}>
-            <GoogleMap lat={singleItem.lat} lng={singleItem.lon}/>
-          </Suspense>
+      {/* google map表示 */}
+      <div  style={{margin: "50px 0"}}>
+        <Typography variant="h2"
+          sx={{
+            fontFamily: '"Kaushan Script", cursive',
+            fontSize:"28px",
+            color:"#5a8c68",
+            display:"flex",
+            justifyContent:"center"
+          }}>
 
-      </div>
-      <div>
-        <Suspense fallback={<div>コメントを読み込み中...</div>}>
-          <Comment postId={singleItem.id}/>
+            Location
+
+        </Typography>
+        <div style={{display:"flex", justifyContent:"center"}}>
+          <p style={{width:"content-fit"}}>場所: {singleItem.place}</p>
+        </div>
+        <Suspense fallback={<div>地図を読み込み中...</div>}>
+          <GoogleMap lat={singleItem.lat} lng={singleItem.lon}/>
         </Suspense>
       </div>
-      <div><Link href={`/`}>一覧に戻る</Link></div>
+
+
+      {/* コメント表示 */}
+      <div style={{margin: "50px 0"}}>
+        <Suspense fallback={<div>コメントを読み込み中...</div>}>
+          <div style={{display:"flex", justifyContent:"center"}}>
+          <Paper elevation={3} sx={{width:"100%", padding:"40px", margin:"0 0 20px 0"}}>
+            <Typography variant="h2"
+              sx={{
+                fontFamily: '"Kaushan Script", cursive',
+                fontSize:"28px",
+                color:"#5a8c68",
+                display:"flex",
+                justifyContent:"center",
+                marginBottom:"30px"
+              }}>
+              Comment
+            </Typography>
+            <Comment postId={singleItem.id}/>
+          </Paper>
+
+          </div>
+        </Suspense>
+      </div>
+      <div className="backToList"><Link href={`/`} >一覧に戻る</Link></div>
+      <div className="editDeleteButton">
+        <div><Link href={`/post/update/${postId}`}>編集</Link></div>
+        <div><Link href={`/post/delete/${postId}`}>削除</Link></div>
+      </div>
     </div>
   )
 }

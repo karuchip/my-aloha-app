@@ -1,6 +1,9 @@
 "use client"
 import {useState, useEffect} from "react"
 import { useAuthContext } from "../AuthContext"
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import Typography from '@mui/material/Typography'
 
 type likeCountProps = {
   likeCount: number
@@ -8,6 +11,7 @@ type likeCountProps = {
 }
 
 export const dynamic = "force-dynamic"
+
 
 const LikeCount = ({likeCount, id}:likeCountProps) => {
   const {loginUserId, loading} = useAuthContext()
@@ -92,9 +96,19 @@ const LikeCount = ({likeCount, id}:likeCountProps) => {
   return(
     <div>
       {hasLiked===false ? (
-          <button onClick={handleSubmit}>{count} mahalo!!</button>
+          <button onClick={handleSubmit} className="mahaloBtn">
+            <Typography sx={{ fontFamily: '"Kaushan Script", cursive', fontSize:18}}>
+              <FavoriteBorderIcon sx={{width:"30px", height:"30px"}}/><span> </span>
+              {count}<span> </span>mahalo!
+            </Typography>
+          </button>
         ):(
-        <button onClick={handleSubmit} disabled >{count} mahalo!!</button>
+        <button onClick={handleSubmit} disabled className="mahaloDisBtn">
+            <Typography sx={{ fontFamily: '"Kaushan Script", cursive', fontSize:18}}>
+            <FavoriteIcon sx={{width:"30px", height:"30px"}}/><span>  </span>
+            {count}<span> </span>mahalo!
+            </Typography>
+        </button>
       )}
     </div>
   )

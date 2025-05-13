@@ -6,7 +6,14 @@ import {useRouter} from "next/navigation"
 import { useAuthContext } from "@/app/AuthContext"
 //画像ダウンロードapi
 import ImgInput from "../../components/imgInput"
+//google map auto complete機能
 import PlaceAutocomplete from "../../components/placeAutocomplete"
+//MUI
+import {Button, TextField} from "@mui/material"
+//カテゴリー配列
+import {categoryList, Category} from "../../components/categoryButton"
+//Image
+import Image from "next/image"
 
 const CreateItem = () => {
 
@@ -14,7 +21,7 @@ const CreateItem = () => {
   const [place, setPlace] = useState("")
   const [image, setImage] = useState("")
   const [description, setDescription] = useState("")
-  const [category, setCategory] = useState("")
+  const [category, setCategory] = useState<string | null>(null)
   const [lat, setLat] = useState<number | null>(null)
   const [lng, setLng] = useState<number | null>(null)
 
@@ -68,47 +75,86 @@ const CreateItem = () => {
 
     return (
       <div>
-        <h1>アイテム作成</h1>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="createTitle">タイトル</label>
-          <input value={title} onChange={(e)=>setTitle(e.target.value)} type="text" name="title" placeholder="タイトル" id="createTitle" required />
+        <div className="postFormWrapper">
+          <h1>🌺 思い出をシェアしよう！</h1>
+          <form onSubmit={handleSubmit} className="createForm">
+            <div>
+              <TextField
+                label="タイトル"
+                placeholder="例: モアナサンドイッチが最高だった🍍"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                fullWidth
+                margin="normal"
+              />
+            </div>
 
-          <label htmlFor="createImage">画像</label>
-          <ImgInput setImage={setImage}/>
-          <input value={image} onChange={(e)=>setImage(e.target.value)} type="text" name="image" placeholder="画像" id="createImage" required disabled />
 
-          <label htmlFor="createContent">詳細</label>
-          <input value={description} onChange={(e=>setDescription(e.target.value))} type="text" name="description" placeholder="内容" id="createContent" required />
+            <div>
+              <TextField
+                label="ひとこと"
+                placeholder="例: エビとアボカドのコンビネーションが贅沢🥑🦐🩵"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                fullWidth
+                margin="normal"
+              />
+            </div>
 
-          <div>
-            <h3>記事カテゴリー</h3>
-            <input type="radio" value="food" checked={category === "food"} onChange={(e)=>setCategory(e.target.value)} name="category" id="categoryFood"/>
-            <label htmlFor="categoryFood">食べ物</label>
+            <div className="selectCategory" >
+              <p>🏷️ 記事カテゴリー</p>
+              {categoryList.slice(1).map((cat:Category) => (
+                <Button
+                key={cat.value}
+                variant={category === cat.value ? "contained" : "outlined"}
+                onClick={() => setCategory(cat.value)}
+                sx={{
+                  backgroundColor: category === cat.value ? cat.color : "transparent",
+                  color: category === cat.value ? "white" : "black",
+                  borderRadius: "20px",
+                  textTransform: "none",
+                  margin: "4px"
+                  }}
+                  >
+                    {cat.label}
+                </Button>
+              ))}
+            </div>
 
-            <input type="radio" value="activity" checked={category === "activity"} onChange={(e)=>setCategory(e.target.value)} name="category" id="categoryActivity"/>
-            <label htmlFor="categoryActivity">アクティビティ</label>
+            <div className="selectImage">
+              <p>📸 画像</p>
+              <ImgInput setImage={setImage}/>
+              <input className="selectImageBox" value={image} onChange={(e)=>setImage(e.target.value)} type="text" name="image" placeholder="「ファイルを選択」ボタンから画像を選択し、「画像 Upload」ボタンを押してください" id="createImage" required disabled/>
+              <div className="imagePreview">
+                {image &&
+                  <Image
+                    src={image}
+                    alt="画像"
+                    width={500}
+                    height={300}
+                    priority
+                  />
+                }
+              </div>
+            </div>
 
-            <input type="radio" value="shopping" checked={category === "shopping"} onChange={(e)=>setCategory(e.target.value)} name="category" id="categoryShopping"/>
-            <label htmlFor="categoryShopping">買い物</label>
+            <div className="selectPlace">
+            <p>📍場所を追加する</p>
+            <PlaceAutocomplete onSelectPlace={handleSelectPlace} defaultPlace={null} />
+            </div>
 
-            <input type="radio" value="place" checked={category === "place"} onChange={(e)=>setCategory(e.target.value)} name="category" id="categoryPlace"/>
-            <label htmlFor="categoryPlace">場所</label>
+            <div style={{display:"flex", justifyContent:"center"}}>
+              <Button type="submit" variant="contained" color="primary"
+                sx={{
+                  borderRadius: "30px", padding: "10px 24px", marginTop: "50px",
+                  backgroundColor: "#66c7d9", '&:hover': { backgroundColor: "#5ab6c7" }
+                }}>
+                📤 投稿する
+              </Button>
+            </div>
 
-            <input type="radio" value="culture" checked={category === "culture"} onChange={(e)=>setCategory(e.target.value)} name="category" id="categoryCulture"/>
-            <label htmlFor="categoryCulture">文化</label>
-
-            <input type="radio" value="nature" checked={category === "nature"} onChange={(e)=>setCategory(e.target.value)} name="category" id="categoryNature"/>
-            <label htmlFor="categoryNature">自然</label>
-
-            <input type="radio" value="other" checked={category === "other"} onChange={(e)=>setCategory(e.target.value)} name="category" id="categoryOther"/>
-            <label htmlFor="categoryOther">その他</label>
-          </div>
-
-          <PlaceAutocomplete onSelectPlace={handleSelectPlace} />
-
-          <button type="submit">投稿する</button>
-
-        </form>
+          </form>
+        </div>
       </div>
     )
   }

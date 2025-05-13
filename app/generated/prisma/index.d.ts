@@ -2474,7 +2474,7 @@ export namespace Prisma {
     lon: number | null
     category: string
     published: boolean
-    authorId: number | null
+    authorId: number
     _count: PostCountAggregateOutputType | null
     _avg: PostAvgAggregateOutputType | null
     _sum: PostSumAggregateOutputType | null
@@ -2510,7 +2510,7 @@ export namespace Prisma {
     category?: boolean
     published?: boolean
     authorId?: boolean
-    author?: boolean | Post$authorArgs<ExtArgs>
+    author?: boolean | UserDefaultArgs<ExtArgs>
     likes?: boolean | Post$likesArgs<ExtArgs>
     comments?: boolean | Post$commentsArgs<ExtArgs>
     _count?: boolean | PostCountOutputTypeDefaultArgs<ExtArgs>
@@ -2536,7 +2536,7 @@ export namespace Prisma {
 
   export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "title" | "description" | "image" | "likeCount" | "place" | "lat" | "lon" | "category" | "published" | "authorId", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    author?: boolean | Post$authorArgs<ExtArgs>
+    author?: boolean | UserDefaultArgs<ExtArgs>
     likes?: boolean | Post$likesArgs<ExtArgs>
     comments?: boolean | Post$commentsArgs<ExtArgs>
     _count?: boolean | PostCountOutputTypeDefaultArgs<ExtArgs>
@@ -2545,7 +2545,7 @@ export namespace Prisma {
   export type $PostPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Post"
     objects: {
-      author: Prisma.$UserPayload<ExtArgs> | null
+      author: Prisma.$UserPayload<ExtArgs>
       likes: Prisma.$PostLikesPayload<ExtArgs>[]
       comments: Prisma.$PostCommentsPayload<ExtArgs>[]
     }
@@ -2562,7 +2562,7 @@ export namespace Prisma {
       lon: number | null
       category: string
       published: boolean
-      authorId: number | null
+      authorId: number
     }, ExtArgs["result"]["post"]>
     composites: {}
   }
@@ -2903,7 +2903,7 @@ export namespace Prisma {
    */
   export interface Prisma__PostClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    author<T extends Post$authorArgs<ExtArgs> = {}>(args?: Subset<T, Post$authorArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    author<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     likes<T extends Post$likesArgs<ExtArgs> = {}>(args?: Subset<T, Post$likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostLikesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     comments<T extends Post$commentsArgs<ExtArgs> = {}>(args?: Subset<T, Post$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostCommentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -3288,25 +3288,6 @@ export namespace Prisma {
      * Limit how many Posts to delete.
      */
     limit?: number
-  }
-
-  /**
-   * Post.author
-   */
-  export type Post$authorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
   }
 
   /**
@@ -5540,8 +5521,8 @@ export namespace Prisma {
     lon?: FloatNullableFilter<"Post"> | number | null
     category?: StringFilter<"Post"> | string
     published?: BoolFilter<"Post"> | boolean
-    authorId?: IntNullableFilter<"Post"> | number | null
-    author?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    authorId?: IntFilter<"Post"> | number
+    author?: XOR<UserScalarRelationFilter, UserWhereInput>
     likes?: PostLikesListRelationFilter
     comments?: PostCommentsListRelationFilter
   }
@@ -5559,7 +5540,7 @@ export namespace Prisma {
     lon?: SortOrderInput | SortOrder
     category?: SortOrder
     published?: SortOrder
-    authorId?: SortOrderInput | SortOrder
+    authorId?: SortOrder
     author?: UserOrderByWithRelationInput
     likes?: PostLikesOrderByRelationAggregateInput
     comments?: PostCommentsOrderByRelationAggregateInput
@@ -5582,8 +5563,8 @@ export namespace Prisma {
     lon?: FloatNullableFilter<"Post"> | number | null
     category?: StringFilter<"Post"> | string
     published?: BoolFilter<"Post"> | boolean
-    authorId?: IntNullableFilter<"Post"> | number | null
-    author?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    authorId?: IntFilter<"Post"> | number
+    author?: XOR<UserScalarRelationFilter, UserWhereInput>
     likes?: PostLikesListRelationFilter
     comments?: PostCommentsListRelationFilter
   }, "id">
@@ -5601,7 +5582,7 @@ export namespace Prisma {
     lon?: SortOrderInput | SortOrder
     category?: SortOrder
     published?: SortOrder
-    authorId?: SortOrderInput | SortOrder
+    authorId?: SortOrder
     _count?: PostCountOrderByAggregateInput
     _avg?: PostAvgOrderByAggregateInput
     _max?: PostMaxOrderByAggregateInput
@@ -5625,7 +5606,7 @@ export namespace Prisma {
     lon?: FloatNullableWithAggregatesFilter<"Post"> | number | null
     category?: StringWithAggregatesFilter<"Post"> | string
     published?: BoolWithAggregatesFilter<"Post"> | boolean
-    authorId?: IntNullableWithAggregatesFilter<"Post"> | number | null
+    authorId?: IntWithAggregatesFilter<"Post"> | number
   }
 
   export type PostLikesWhereInput = {
@@ -5815,7 +5796,7 @@ export namespace Prisma {
     lon?: number | null
     category?: string
     published?: boolean
-    author?: UserCreateNestedOneWithoutPostsInput
+    author: UserCreateNestedOneWithoutPostsInput
     likes?: PostLikesCreateNestedManyWithoutPostInput
     comments?: PostCommentsCreateNestedManyWithoutPostInput
   }
@@ -5833,7 +5814,7 @@ export namespace Prisma {
     lon?: number | null
     category?: string
     published?: boolean
-    authorId?: number | null
+    authorId: number
     likes?: PostLikesUncheckedCreateNestedManyWithoutPostInput
     comments?: PostCommentsUncheckedCreateNestedManyWithoutPostInput
   }
@@ -5850,7 +5831,7 @@ export namespace Prisma {
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
     category?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
-    author?: UserUpdateOneWithoutPostsNestedInput
+    author?: UserUpdateOneRequiredWithoutPostsNestedInput
     likes?: PostLikesUpdateManyWithoutPostNestedInput
     comments?: PostCommentsUpdateManyWithoutPostNestedInput
   }
@@ -5868,7 +5849,7 @@ export namespace Prisma {
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
     category?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
-    authorId?: NullableIntFieldUpdateOperationsInput | number | null
+    authorId?: IntFieldUpdateOperationsInput | number
     likes?: PostLikesUncheckedUpdateManyWithoutPostNestedInput
     comments?: PostCommentsUncheckedUpdateManyWithoutPostNestedInput
   }
@@ -5886,7 +5867,7 @@ export namespace Prisma {
     lon?: number | null
     category?: string
     published?: boolean
-    authorId?: number | null
+    authorId: number
   }
 
   export type PostUpdateManyMutationInput = {
@@ -5916,7 +5897,7 @@ export namespace Prisma {
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
     category?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
-    authorId?: NullableIntFieldUpdateOperationsInput | number | null
+    authorId?: IntFieldUpdateOperationsInput | number
   }
 
   export type PostLikesCreateInput = {
@@ -6181,20 +6162,9 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type UserNullableScalarRelationFilter = {
-    is?: UserWhereInput | null
-    isNot?: UserWhereInput | null
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
   }
 
   export type SortOrderInput = {
@@ -6328,30 +6298,9 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
   export type PostScalarRelationFilter = {
     is?: PostWhereInput
     isNot?: PostWhereInput
-  }
-
-  export type UserScalarRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
   }
 
   export type PostLikesPostIdUserIdCompoundUniqueInput = {
@@ -6626,12 +6575,10 @@ export namespace Prisma {
     set?: boolean
   }
 
-  export type UserUpdateOneWithoutPostsNestedInput = {
+  export type UserUpdateOneRequiredWithoutPostsNestedInput = {
     create?: XOR<UserCreateWithoutPostsInput, UserUncheckedCreateWithoutPostsInput>
     connectOrCreate?: UserCreateOrConnectWithoutPostsInput
     upsert?: UserUpsertWithoutPostsInput
-    disconnect?: UserWhereInput | boolean
-    delete?: UserWhereInput | boolean
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPostsInput, UserUpdateWithoutPostsInput>, UserUncheckedUpdateWithoutPostsInput>
   }
@@ -6662,14 +6609,6 @@ export namespace Prisma {
     update?: PostCommentsUpdateWithWhereUniqueWithoutPostInput | PostCommentsUpdateWithWhereUniqueWithoutPostInput[]
     updateMany?: PostCommentsUpdateManyWithWhereWithoutPostInput | PostCommentsUpdateManyWithWhereWithoutPostInput[]
     deleteMany?: PostCommentsScalarWhereInput | PostCommentsScalarWhereInput[]
-  }
-
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type PostLikesUncheckedUpdateManyWithoutPostNestedInput = {
@@ -6869,17 +6808,6 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -6912,6 +6840,17 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | null
@@ -6934,22 +6873,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type PostCreateWithoutAuthorInput = {
@@ -7071,7 +6994,7 @@ export namespace Prisma {
     lon?: FloatNullableFilter<"Post"> | number | null
     category?: StringFilter<"Post"> | string
     published?: BoolFilter<"Post"> | boolean
-    authorId?: IntNullableFilter<"Post"> | number | null
+    authorId?: IntFilter<"Post"> | number
   }
 
   export type PostLikesUpsertWithWhereUniqueWithoutUserInput = {
@@ -7265,7 +7188,7 @@ export namespace Prisma {
     lon?: number | null
     category?: string
     published?: boolean
-    author?: UserCreateNestedOneWithoutPostsInput
+    author: UserCreateNestedOneWithoutPostsInput
     comments?: PostCommentsCreateNestedManyWithoutPostInput
   }
 
@@ -7282,7 +7205,7 @@ export namespace Prisma {
     lon?: number | null
     category?: string
     published?: boolean
-    authorId?: number | null
+    authorId: number
     comments?: PostCommentsUncheckedCreateNestedManyWithoutPostInput
   }
 
@@ -7336,7 +7259,7 @@ export namespace Prisma {
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
     category?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
-    author?: UserUpdateOneWithoutPostsNestedInput
+    author?: UserUpdateOneRequiredWithoutPostsNestedInput
     comments?: PostCommentsUpdateManyWithoutPostNestedInput
   }
 
@@ -7353,7 +7276,7 @@ export namespace Prisma {
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
     category?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
-    authorId?: NullableIntFieldUpdateOperationsInput | number | null
+    authorId?: IntFieldUpdateOperationsInput | number
     comments?: PostCommentsUncheckedUpdateManyWithoutPostNestedInput
   }
 
@@ -7397,7 +7320,7 @@ export namespace Prisma {
     lon?: number | null
     category?: string
     published?: boolean
-    author?: UserCreateNestedOneWithoutPostsInput
+    author: UserCreateNestedOneWithoutPostsInput
     likes?: PostLikesCreateNestedManyWithoutPostInput
   }
 
@@ -7414,7 +7337,7 @@ export namespace Prisma {
     lon?: number | null
     category?: string
     published?: boolean
-    authorId?: number | null
+    authorId: number
     likes?: PostLikesUncheckedCreateNestedManyWithoutPostInput
   }
 
@@ -7468,7 +7391,7 @@ export namespace Prisma {
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
     category?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
-    author?: UserUpdateOneWithoutPostsNestedInput
+    author?: UserUpdateOneRequiredWithoutPostsNestedInput
     likes?: PostLikesUpdateManyWithoutPostNestedInput
   }
 
@@ -7485,7 +7408,7 @@ export namespace Prisma {
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
     category?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
-    authorId?: NullableIntFieldUpdateOperationsInput | number | null
+    authorId?: IntFieldUpdateOperationsInput | number
     likes?: PostLikesUncheckedUpdateManyWithoutPostNestedInput
   }
 

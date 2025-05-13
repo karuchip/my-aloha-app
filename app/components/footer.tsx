@@ -1,7 +1,9 @@
 const Footer = () => {
   return (
     <footer>
-      <p>@{new Date().getFullYear()} Aloha memories</p>
+      <div className="footerContainer">
+        <p>@{new Date().getFullYear()} Aloha memories</p>
+      </div>
     </footer>
   )
 }
