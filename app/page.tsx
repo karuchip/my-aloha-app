@@ -39,6 +39,7 @@ type AllItemTypes = {
 export const dynamic = "force-dynamic"
 
 const ReadAllItems = () => {
+  console.log(process.env.NEXT_PUBLIC_URL);
   const {loading, loginUserId} = useAuth(false)
   const [allItems, setAllItems] = useState<AllItemTypes[]>([])
 
@@ -52,7 +53,7 @@ const ReadAllItems = () => {
   //投稿一覧取得
   useEffect(() => {
     const fetchData = async()=>{
-      const response = await fetch("http://localhost:3000/api/post/readall")
+      const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/post/readall`)
       const jsonData = await response.json()
       setAllItems(jsonData.allItems)
     }
@@ -67,7 +68,7 @@ const ReadAllItems = () => {
 
     const fetchLikePostId = async() => {
       const id = String(loginUserId)
-      const response = await fetch(`http://localhost:3000/api/like/likePostId/${id}`)
+      const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/like/likePostId/${id}`)
       const jsonData = await response.json()
       const likePostId = jsonData.likePostIds
       setLikePostIds(likePostId)

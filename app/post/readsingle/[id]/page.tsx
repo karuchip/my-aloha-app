@@ -38,7 +38,7 @@ type SingleItemTypes = {
 export const dynamic = "force-dynamic"
 
 export const getSingleItem = async(id: string) => {
-  const response = await fetch(`http://localhost:3000/api/post/readsingle/${id}`)
+  const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/post/readsingle/${id}`)
   const jsonData = await response.json()
   const singleItem = await jsonData.singleItem
   return singleItem
