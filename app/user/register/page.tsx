@@ -23,7 +23,7 @@ const Register = () => {
         password: password
       }
 
-      const response = await fetch('/api/user/register', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/register`, {
         method: "POST",
         headers:{
           "Accept": "application/json",

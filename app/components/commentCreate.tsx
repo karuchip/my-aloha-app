@@ -15,7 +15,7 @@ const CommentCreate = ({loginUserId, postId, onCommentCreated}:commentType)=>{
     e.preventDefault()
     console.log("コメントボタンが押されました")
     try{
-      const response = await fetch (`/api/comment/createComment/${postId}`, {
+      const response = await fetch (`${process.env.NEXT_PUBLIC_BASE_URL}/api/comment/createComment/${postId}`, {
         method: "POST",
         headers:{
           "Accept": "application/json",
