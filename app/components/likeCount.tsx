@@ -30,7 +30,7 @@ const LikeCount = ({likeCount, id}:likeCountProps) => {
 
     const likedCheck = async() => {
       try {
-        const response = await fetch(`/api/like/likedCheck/${id}/${loginUserId}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/like/likedCheck/${id}/${loginUserId}`)
         const jsonData = await response.json()
 
         if(jsonData.hasLiked) {
@@ -57,7 +57,7 @@ const LikeCount = ({likeCount, id}:likeCountProps) => {
 
     //API「addLikeUser」の呼び出し
     try {
-      const addLikeRes = await fetch(`/api/like/addLikedUser/${id}/${loginUserId}`, {
+      const addLikeRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/like/addLikedUser/${id}/${loginUserId}`, {
         method: "POST",
         headers:{
           "Accept": "application/json",
@@ -69,7 +69,7 @@ const LikeCount = ({likeCount, id}:likeCountProps) => {
       //API「likeCountUpdate」の呼び出し
       if(addLikeData){
         setHasLiked(true)
-        const countUpdateRes = await fetch(`/api/like/likeCountUpdate/${id}`, {
+        const countUpdateRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/like/likeCountUpdate/${id}`, {
           method:"POST",
           headers:{
             "Accept": "application/json",

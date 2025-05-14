@@ -46,7 +46,7 @@ const UpdateItem = ({params}:any) => {
 
         console.log("フェッチ中")
 
-        const response = await fetch(`/api/post/readsingle/${params.id}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post/readsingle/${params.id}`)
         const jsonData = await response.json()
         const singleItem = jsonData.singleItem
 
@@ -76,7 +76,7 @@ const UpdateItem = ({params}:any) => {
 
     try{
 
-      const response = await fetch(`/api/post/update/${params.id}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post/update/${params.id}`, {
         method: "PUT",
         headers: {
           "Accept": "application/json",
