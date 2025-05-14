@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/utils/prisma";
 
-export async function GET(request:NextRequest, {params}:{params: {id: string, loginUserId:string}}) {
+export async function GET(request:NextRequest, context:{params: {id: string, loginUserId:string}}) {
 
   try {
-    const {id, loginUserId} = params
+    const {id, loginUserId} = context.params
 
     const checkLiked = await prisma.postLikes.findFirst({
       where: {

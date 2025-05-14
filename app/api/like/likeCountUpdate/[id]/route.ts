@@ -1,11 +1,11 @@
 import {NextResponse, NextRequest} from "next/server"
 import prisma from "@/utils/prisma"
 
-export async function POST(request:NextRequest, {params}:{params:{id:string}}) {
+export async function POST(request:NextRequest, context:{params:{id:string}}) {
 
   try {
 
-    const postId = Number(params.id)
+    const postId = Number(context.params.id)
 
 
     const updated = await prisma.post.update({

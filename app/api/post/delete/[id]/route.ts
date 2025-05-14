@@ -5,8 +5,8 @@ type DeleteRequestBody = {
   authorId: number
 }
 
-export async function DELETE(request: NextRequest, {params}:{params:{id:string}}) {
-  const id = Number(params.id)
+export async function DELETE(request: NextRequest, context:{params:{id:string}}) {
+  const id = Number(context.params.id)
   const body:DeleteRequestBody = await request.json()
 
   try {

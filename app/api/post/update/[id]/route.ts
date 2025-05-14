@@ -12,9 +12,9 @@ type Body = {
   authorId: number,
 }
 
-export async function PUT(request: NextRequest, {params}:{params:{id:string}}) {
+export async function PUT(request: NextRequest, context:{params:{id:string}}) {
   const body = await request.json() as Body
-  const id = Number(params.id)
+  const id = Number(context.params.id)
   try {
 
     const singleItem = await prisma.post.findUnique({

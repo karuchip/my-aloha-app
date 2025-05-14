@@ -2,9 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/utils/prisma";
 
 
-export async function POST(request:NextRequest, { params }: { params: { id: string, loginUserId: string } } ) {
+export async function POST(request:NextRequest, context: { params: { id: string, loginUserId: string } } ) {
 
-  const {id, loginUserId} = params
+  const {id, loginUserId} = context.params
   try {
       const addedLike = await prisma.postLikes.create({
         data: {
