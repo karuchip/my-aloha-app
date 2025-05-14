@@ -46,7 +46,7 @@ const UpdateItem = ({params}:Props) => {
 
         console.log("フェッチ中")
 
-        const response = await fetch(`http://localhost:3000/api/post/readsingle/${params.id}`)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/post/readsingle/${params.id}`)
         const jsonData = await response.json()
         const singleItem = jsonData.singleItem
 
@@ -76,7 +76,7 @@ const UpdateItem = ({params}:Props) => {
 
     try{
 
-      const response = await fetch(`http://localhost:3000/api/post/update/${params.id}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/post/update/${params.id}`, {
         method: "PUT",
         headers: {
           "Accept": "application/json",
