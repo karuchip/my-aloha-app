@@ -1,8 +1,8 @@
 import {NextResponse, NextRequest} from "next/server"
 import prisma from "@/utils/prisma"
 
-export async function GET(request:NextRequest, {params}:{params:{id:string}}) {
-  const userId = Number(params.id)
+export async function GET(request:NextRequest, context:{params:{id:string}}) {
+  const userId = Number(context.params.id)
   try {
     const getLikePostId = await prisma.postLikes.findMany({
       where: {userId},

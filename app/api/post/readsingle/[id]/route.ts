@@ -1,17 +1,10 @@
 import { NextRequest, NextResponse } from "next/server"
 import prisma from "../../../../../utils/prisma"
 
-type Params = {
-  params: {
-    id: string
-  }
-}
 
-export async function GET(
-  request: NextRequest,
-  {params}: Params
- ) {
-  const id = Number(params.id)
+
+export async function GET( request: NextRequest, context : {params: {id: string}}) {
+  const id = Number(context.params.id)
 
   try {
     const singleItem = await prisma.post.findUnique({
