@@ -2,9 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/utils/prisma";
 
 
-export async function POST(request:NextRequest, context: { params: { id: string, loginUserId: string } } ) {
+export async function POST(request:NextRequest) {
+  const url = new URL(request.url)
+  const segments = url.pathname.split("/")
+  const id = segments[segments.length - 2]
+  const loginUserId = segments[segments.length - 1]
 
-  const {id, loginUserId} = context.params
+  if (!id || isNaN(Number(id))) {
+    return NextResponse.json({message: "IDが不正です"}, {status: 400})
+  }
+
   try {
       const addedLike = await prisma.postLikes.create({
         data: {
