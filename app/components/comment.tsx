@@ -22,7 +22,7 @@ const Comment = ({postId}:{postId:number}) => {
 
   const getAllComments = async()=>{
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/comment/readAllComments/${postId}`)
+      const response = await fetch(`/api/comment/readAllComments/${postId}`)
       const jsonData = await response.json()
 
       if (jsonData.readAllComments) {

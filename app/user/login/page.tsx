@@ -27,7 +27,7 @@ const Login = () => {
     try{
       console.log(email);
       console.log(password);
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/login`, {
+      const response = await fetch('/api/user/login', {
         method:"POST",
         headers:{
           "Accept": "application/JSON",
