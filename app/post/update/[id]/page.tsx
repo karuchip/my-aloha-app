@@ -15,7 +15,7 @@ type Props = {
   }
 }
 
-const UpdateItem = ({params}:Props) => {
+const UpdateItem = ({params}:any) => {
 
   const [postId, setPostId] = useState("")
   const [title, setTitle] = useState("")

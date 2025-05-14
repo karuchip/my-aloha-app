@@ -1,12 +1,18 @@
 import {NextResponse, NextRequest} from "next/server"
 import prisma from "@/utils/prisma"
 
-export async function POST(request:NextRequest, context:{params:{id:string}}) {
+export async function POST(request:NextRequest) {
+
+  const url = new URL(request.url)
+  const segments = url.pathname.split("/")
+  const id = segments[segments.length - 1]
+
+  if (!id || isNaN(Number(id))) {
+    return NextResponse.json({message: "idが不正です"}, {status:400})
+  }
+  const postId = Number(id)
 
   try {
-
-    const postId = Number(context.params.id)
-
 
     const updated = await prisma.post.update({
       where: {id: postId},

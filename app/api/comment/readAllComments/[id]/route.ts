@@ -2,10 +2,18 @@ import {NextRequest, NextResponse } from "next/server";
 import prisma from "@/utils/prisma";
 
 
-export async function GET(request: NextRequest, context:{params:{id:string}}){
+export async function GET(request: NextRequest){
+  const url = new URL(request.url)
+  const segments = url.pathname.split("/")
+  const id = segments[segments.length - 1]
+
+  if(!id || isNaN(Number(id))) {
+    return NextResponse.json({message: "IDが不正です"},{status: 400})
+  }
+
+  const postId = Number(id)
 
   try {
-    const postId = Number(context.params.id)
     const readAllComments = await prisma.postComments.findMany({
       where: {postId: postId},
       include: {user: true},

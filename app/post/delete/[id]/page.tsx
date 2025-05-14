@@ -1,9 +1,10 @@
 import Form from "./form"
-import {getSingleItem} from "../../readsingle/[id]/page"
+import {GetSingleItem} from "@/utils/getSingleItem"
 
 
-const DeleteItem = async({params}:{params:{id:string}}) => {
-  const singleItem = await getSingleItem(params.id)
+const DeleteItem = async(props: any) => {
+  const id = props.params?.id
+  const singleItem = await GetSingleItem(id)
 
   return (
     <div className="postFormWrapper">
@@ -11,7 +12,7 @@ const DeleteItem = async({params}:{params:{id:string}}) => {
         <h1>アイテム削除</h1>
         <p className="deleteConfirm">⚠️ 下記の投稿を本当に削除しますか？</p>
       </div>
-        <Form id={params.id} singleItem={singleItem}/>
+        <Form id={id} singleItem={singleItem}/>
     </div>
   )
 }

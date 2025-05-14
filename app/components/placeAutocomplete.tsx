@@ -22,11 +22,13 @@ const PlaceAutocomplete = ({ onSelectPlace, defaultPlace }: Props) => {
       autocomplete.addListener("place_changed", () => {
         const place = autocomplete.getPlace()
         if (place.geometry) {
-          const lat = place.geometry.location.lat()
-          const lng = place.geometry.location.lng()
-          const name = place.formatted_address || place.name || ""
-          onSelectPlace(lat, lng, name)
-          setPlace(name)
+          if (place.geometry.location) {
+            const lat = place.geometry.location.lat()
+            const lng = place.geometry.location.lng()
+            const name = place.formatted_address || place.name || ""
+            onSelectPlace(lat, lng, name)
+            setPlace(name)
+          }
         } else if (inputRef.current) {
           const name = inputRef.current.value
           onSelectPlace(NaN, NaN, name)
