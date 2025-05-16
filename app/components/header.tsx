@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useAuthContext } from "../AuthContext"
-import {Typography} from "@mui/material"
+import {Typography, Button} from "@mui/material"
 
 //動的ファイルにて、データの更新時に直に更新する
 export const dynamic = "force-dynamic"
@@ -28,7 +28,10 @@ const Header = () => {
             ):(
               <>
                 <p>ようこそ、 {loginUserName} さん</p>
-                <Link href="/post/create" className="createPostBtn"> ＋ 投稿</Link>
+                <Link href="/post/create">
+                  <Button variant="contained" sx={{margin:"10px 0 0 10px", backgroundColor:"#f06543", fontWeight: 700}}> ＋ 投稿</Button>
+                </Link>
+
                 <Link href="/user/logout" className="logoutBtn">ログアウト</Link>
               </>
             )}

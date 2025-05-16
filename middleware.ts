@@ -6,13 +6,13 @@ export async function middleware(request:NextRequest) {
   const token = await request.headers.get("Authorization")?.split(" ")[1]
 
   if(!token) {
-    return NextResponse.json({message:"トークンがありません"})
+    return NextResponse.redirect(new URL("/login", request.url))
   }
 
   try {
     const secretKey = new TextEncoder().encode("my-aloha-app-book")
     const decodedJwt = await jwtVerify(token, secretKey)
-    console.log("decodedJwt:", decodedJwt)
+
     return NextResponse.next()
 
   } catch(error) {

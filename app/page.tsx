@@ -15,6 +15,7 @@ import ExpandMore from "./components/expandMore"
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import SearchIcon from '@mui/icons-material/Search';
 
 type AllItemTypes = {
   id: number,
@@ -88,22 +89,25 @@ const ReadAllItems = () => {
 
   return(
     <div className="mainContainer">
-      <Card sx={{ mb: 5 }}>
-        <Box>
+      <Card sx={{ mb: 5}} className="searchCard">
+        <Box className="searchCard">
           <CardActions sx={{display: "flex", justifyContent: "center"}}>
 
-            <Typography  sx={{ fontSize: "16px", mr: 1, color: "#5a8c68", fontWeight:"700" }}>
-              検索・絞り込み・並び替え
-            </Typography>
+            <label style={{display:"flex"}}>
+              <Typography  sx={{ fontSize: "16px", mr: 1, color: "#fff", fontWeight:"700" }}>
+                <SearchIcon sx={{m:0, pt:0, color:"#fff"}} />
+                <span className="searchIcon"> 検索・ソート</span>
+              </Typography>
 
-            <ExpandMore
-              expand={expanded}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
-              >
-                <ExpandMoreIcon />
-            </ExpandMore>
+              <ExpandMore
+                expand={expanded}
+                onClick={handleExpandClick}
+                aria-expanded={expanded}
+                aria-label="show more"
+                >
+                  <ExpandMoreIcon sx={{m:0, p:0, color:"#fff"}} />
+              </ExpandMore>
+            </label>
           </CardActions>
         </Box>
 
@@ -115,17 +119,17 @@ const ReadAllItems = () => {
             justifyContent="center"
             sx={{
               border:"2px solid #5a8c68",
-              minWidth: "300px",
+              minWidth: " 200px",
               maxWidth: "1000px",
-              margin: "0 20px 20px 20px",
-              padding: "20px",
+              margin: "5px 5px 5px 5px",
+              padding: "5px",
               justifyContent: "center"
             }}>
 
               {/* 検索 */}
               <Box sx={{ width: "100%", textAlign: "center", mt: 2 }}>
                 <TextField
-                  label="Search"
+                  label="検索"
                   variant="standard"
                   onChange={(e) => setSearchWord(e.target.value)}
                   sx={{width: "300px", height:"40px", margin:"20px 0"}}
@@ -141,7 +145,7 @@ const ReadAllItems = () => {
 
               {/* カテゴリー */}
               <Box sx={{ width: "100%", textAlign: "center", mt: 2 }}>
-                <Typography variant="body1">カテゴリー</Typography>
+                <Typography variant="body1">カテゴリーフィルター</Typography>
                 <CategoryButtons selectCategory={selectCategory} setSelectCategory={setSelectCategory}/>
               </Box>
 
