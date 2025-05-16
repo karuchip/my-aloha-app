@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react";
 import { TextField, Button } from "@mui/material";
 
@@ -15,7 +17,7 @@ const CommentCreate = ({loginUserId, postId, onCommentCreated}:commentType)=>{
     e.preventDefault()
     console.log("コメントボタンが押されました")
     try{
-      const response = await fetch (`${process.env.NEXT_PUBLIC_BASE_URL}/api/comment/createComment/${postId}`, {
+      const response = await fetch (`/api/comment/createComment/${postId}`, {
         method: "POST",
         headers:{
           "Accept": "application/json",
@@ -50,7 +52,7 @@ const CommentCreate = ({loginUserId, postId, onCommentCreated}:commentType)=>{
               onChange={(e) => setComment(e.target.value)}
               sx={{width: "70vw"}}
               />
-          <Button type="submit" variant="contained" sx={{margin:"10px 0 0 10px"}}>追加</Button>
+          <Button type="submit" variant="contained" sx={{margin:"10px 0 0 10px", backgroundColor:"#f06543"}}>追加</Button>
         </form>
       </div>
   )

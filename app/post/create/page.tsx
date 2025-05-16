@@ -35,7 +35,7 @@ const CreateItem = () => {
     try {
 
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post/create`, {
+      const response = await fetch('/api/post/create', {
         method: "POST",
         headers:{
           "Accept": "application/json",

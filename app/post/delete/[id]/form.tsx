@@ -30,7 +30,7 @@ const DeleteItem = ({id, singleItem}:Props) => {
     e.preventDefault()
 
     try{
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post/delete/${id}`, {
+      const response = await fetch(`/api/post/delete/${id}`, {
         method: "DELETE",
         headers: {
           "Accept": "application/json",

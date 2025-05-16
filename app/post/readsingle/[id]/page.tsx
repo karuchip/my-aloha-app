@@ -6,7 +6,7 @@ import LikeCount from "../../../components/likeCount"
 import Comment from "../../../components/comment"
 import GoogleMap from "../../../components/googleMap"
 import {Paper} from "@mui/material"
-import {Typography} from "@mui/material"
+import {Typography, Button} from "@mui/material"
 
 
 type Props = {
@@ -74,23 +74,30 @@ const ReadSingleItem = async({params}:any) => {
         <div className="operationButtons">
           <LikeCount likeCount={singleItem.likeCount} id={singleItem.id} />
           <div className="editedDay">
-            <p>作成日: {createdAtFormatted}</p>
-            <p>更新日: {updatedAtFormatted}</p>
+            <p>posted: {createdAtFormatted}</p>
+            {(createdAtFormatted !== updatedAtFormatted) &&
+                <p>edited : {updatedAtFormatted}</p>
+            }
           </div>
         </div>
         <div className="postContent">
-            <h1>{singleItem.title}</h1>
-            {singleItem.author? (
-              <p>by {singleItem.author.name}</p>
-            ):(
-              <p>by 未定</p>
-            )}
-            <p>{singleItem.description}</p>
+          <h2>{singleItem.title}</h2>
+          {singleItem.author? (
+            <p>by {singleItem.author.name}</p>
+          ):(
+            <p>by 未定</p>
+          )}
+          <div className="marqueeContainer">
+            <div className="marquee">
+              <p>{singleItem.description}</p>
+            </div>
+          </div>
+
         </div>
       </div>
 
       {/* google map表示 */}
-      <div  style={{margin: "50px 0"}}>
+      {/* <div  style={{margin: "50px 0"}}>
         <Typography variant="h2"
           sx={{
             fontFamily: '"Kaushan Script", cursive',
@@ -109,7 +116,7 @@ const ReadSingleItem = async({params}:any) => {
         <Suspense fallback={<div>地図を読み込み中...</div>}>
           <GoogleMap lat={singleItem.lat} lng={singleItem.lon}/>
         </Suspense>
-      </div>
+      </div> */}
 
 
       {/* コメント表示 */}
@@ -136,8 +143,16 @@ const ReadSingleItem = async({params}:any) => {
       </div>
       <div className="backToList"><Link href={`/`} >一覧に戻る</Link></div>
       <div className="editDeleteButton">
-        <div><Link href={`/post/update/${postId}`}>編集</Link></div>
-        <div><Link href={`/post/delete/${postId}`}>削除</Link></div>
+        <div>
+          <Link href={`/post/update/${postId}`}>
+            <Button variant="contained" sx={{margin:"10px 0 0 10px", backgroundColor:"#f06543"}}>編集</Button>
+          </Link>
+        </div>
+        <div>
+          <Link href={`/post/delete/${postId}`}>
+            <Button variant="contained" sx={{margin:"10px 0 0 10px", backgroundColor:"#f06543"}}>削除</Button>
+          </Link>
+        </div>
       </div>
     </div>
   )
