@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { TextField, Button } from "@mui/material";
+import Loading from "./loading";
 
 type commentType = {
   loginUserId: string,
@@ -12,10 +13,12 @@ type commentType = {
 const CommentCreate = ({loginUserId, postId, onCommentCreated}:commentType)=>{
 
   const [comment, setComment] = useState("")
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault()
-    console.log("コメントボタンが押されました")
+    setLoading(true)
+
     try{
       const response = await fetch (`/api/comment/createComment/${postId}`, {
         method: "POST",
@@ -31,14 +34,19 @@ const CommentCreate = ({loginUserId, postId, onCommentCreated}:commentType)=>{
       })
 
       const jsonData = await response.json()
-      setComment("");
-      onCommentCreated();
+      setComment("")
+      onCommentCreated()
+      setLoading(false)
+
       alert(jsonData.message)
 
     }catch(error) {
       console.error(error)
       alert("コメントを追加できませんでした")
     }
+  }
+  if (loading) {
+    return <Loading/>
   }
 
   return(
@@ -50,7 +58,7 @@ const CommentCreate = ({loginUserId, postId, onCommentCreated}:commentType)=>{
               variant="standard"
               value={comment}
               onChange={(e) => setComment(e.target.value)}
-              sx={{width: "70vw"}}
+              sx={{width: "60vw"}}
               />
           <Button type="submit" variant="contained" sx={{margin:"10px 0 0 10px", backgroundColor:"#f06543"}}>追加</Button>
         </form>

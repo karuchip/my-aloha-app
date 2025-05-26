@@ -6,7 +6,6 @@ import Header from "./components/header"
 import Footer from "./components/footer"
 import { AuthProvider } from "./AuthContext"
 import useAuth from "@/utils/useAuth"
-import Button from "@mui/material/Button"
 import ScopedCssBaseline from "@mui/material/ScopedCssBaseline"
 import { ThemeProvider } from '@mui/material/styles'
 import theme from "@/utils/theme"

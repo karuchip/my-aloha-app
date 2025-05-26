@@ -1,40 +1,77 @@
 "use client"
 import {useState} from "react"
 import {Card, TextField, Button} from "@mui/material"
+import {useRouter} from "next/navigation"
+import { useAuthContext } from "@/app/AuthContext"
 
 
 type SendBodyType = {
   name: string,
   email: string,
+  userIcon: string,
   password: string
 }
 
 const Register = () => {
+  const {setLoginUserId, setLoginUserName, setLoginUserEmail, setLoginUserIcon} = useAuthContext()
+  const router = useRouter()
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
+  function getRandomInt(max:number) {
+    return Math.floor(Math.random()*max) + 1
+  }
+
   const handleSubmit = async(e:React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+
+
+    const iconNum = getRandomInt(6)
+    const randomIconPath = `/images/profile${iconNum}.JPG`
+
     try {
       const body: SendBodyType ={
         name: name,
         email: email,
+        userIcon: randomIconPath,
         password: password
       }
 
-      const response = await fetch('/api/user/register', {
+      const registerRes = await fetch('/api/user/register', {
         method: "POST",
         headers:{
-          "Accept": "application/json",
           "Content-Type": "application/json"
         },
         body: JSON.stringify(body)
       })
 
-      const jsonData = await response.json()
-      alert(jsonData.message)
+      if (registerRes.ok) {
+        const loginRes = await fetch('/api/user/login', {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({email, password}),
+        })
 
+        if(loginRes.ok) {
+          const jsonData = await loginRes.json()
+          localStorage.setItem("token", jsonData.token)
+
+          setLoginUserId(jsonData.payload.id)
+          setLoginUserName(jsonData.payload.name)
+          setLoginUserEmail(jsonData.payload.email)
+          setLoginUserIcon(jsonData.payload.userIcon)
+
+          alert("ユーザー登録が完了し、自動ログインしました。")
+          router.push("/")
+        } else {
+          console.error("自動ログインに失敗しました")
+        }
+      }
     }catch(err){
       alert("ユーザー登録失敗")
     }
@@ -48,6 +85,7 @@ const Register = () => {
         <form onSubmit={handleSubmit}>
           <div className="userFormItem">
             {/* <input value={email} onChange={(e)=>setEmail(e.target.value)} type="text" name="email" placeholder="email"/> */}
+
             <TextField
               type="text"
               value={name}

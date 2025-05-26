@@ -8,6 +8,7 @@ import { useAuthContext } from "@/app/AuthContext"
 import PlaceAutocomplete from "../../../components/placeAutocomplete"
 import {TextField, Button} from "@mui/material"
 import { categoryList, Category } from "@/app/components/categoryButton"
+import Loading from "@/app/components/loading"
 
 type Props = {
   params:{
@@ -26,7 +27,7 @@ const UpdateItem = ({params}:any) => {
   const [description, setDescription] = useState("")
   const [category, setCategory] = useState<string | null>(null)
   const [authorId, setAuthorId] = useState("")
-  const [loading, setLoading] = useState(false)
+  const [loaded, setLoaded] = useState(false)
 
   const router = useRouter()
   const {loginUserId} = useAuthContext()
@@ -59,7 +60,7 @@ const UpdateItem = ({params}:any) => {
         setDescription(singleItem.description)
         setCategory(singleItem.category)
         setAuthorId(singleItem.authorId)
-        setLoading(true)
+        setLoaded(true)
 
       }catch(error) {
         console.log("フェッチ失敗")
@@ -101,7 +102,7 @@ const UpdateItem = ({params}:any) => {
       alert("更新失敗")
     }
   }
-  if(loading) {
+  if(loaded) {
 
     if (loginUserId === authorId) {
       return(
@@ -197,7 +198,7 @@ const UpdateItem = ({params}:any) => {
       )
     }
   }else{
-    return <h2>Loading...</h2>
+    return <Loading />
   }
 }
 
