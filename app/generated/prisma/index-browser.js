@@ -124,7 +124,9 @@ exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
   name: 'name',
-  password: 'password'
+  password: 'password',
+  userIcon: 'userIcon',
+  userProfile: 'userProfile'
 };
 
 exports.Prisma.PostScalarFieldEnum = {
@@ -132,10 +134,19 @@ exports.Prisma.PostScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   title: 'title',
-  description: 'description',
-  image: 'image',
+  image1: 'image1',
+  description1: 'description1',
+  image2: 'image2',
+  description2: 'description2',
+  image3: 'image3',
+  description3: 'description3',
+  image4: 'image4',
+  description4: 'description4',
+  image5: 'image5',
+  description5: 'description5',
   likeCount: 'likeCount',
-  place: 'place',
+  location: 'location',
+  googlePlace: 'googlePlace',
   lat: 'lat',
   lon: 'lon',
   category: 'category',
@@ -163,22 +174,33 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.UserOrderByRelevanceFieldEnum = {
-  email: 'email',
-  name: 'name',
-  password: 'password'
-};
-
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
 
+exports.Prisma.UserOrderByRelevanceFieldEnum = {
+  email: 'email',
+  name: 'name',
+  password: 'password',
+  userIcon: 'userIcon',
+  userProfile: 'userProfile'
+};
+
 exports.Prisma.PostOrderByRelevanceFieldEnum = {
   title: 'title',
-  description: 'description',
-  image: 'image',
-  place: 'place',
+  image1: 'image1',
+  description1: 'description1',
+  image2: 'image2',
+  description2: 'description2',
+  image3: 'image3',
+  description3: 'description3',
+  image4: 'image4',
+  description4: 'description4',
+  image5: 'image5',
+  description5: 'description5',
+  location: 'location',
+  googlePlace: 'googlePlace',
   category: 'category'
 };
 

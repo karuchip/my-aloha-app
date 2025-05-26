@@ -9,7 +9,6 @@ type Body = {
 
 export async function POST (request:NextRequest){
   const body = await request.json() as Body;
-  console.log(body)
 
   try {
 
@@ -22,12 +21,12 @@ export async function POST (request:NextRequest){
 
       //パスワードが正しいかどうか
       if (isSavedUserData.password === body.password) {
-
         const secretKey = new TextEncoder().encode("my-aloha-app-book")
         const payload = {
           email: body.email,
           name: isSavedUserData.name,
-          id: isSavedUserData.id
+          id: isSavedUserData.id,
+          userIcon: isSavedUserData.userIcon
         }
 
         const token = await new SignJWT(payload)

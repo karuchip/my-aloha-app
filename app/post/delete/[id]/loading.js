@@ -1,3 +1,9 @@
-const Loading = () => <h2>Loading...</h2>
+import Loading from "@/app/components/loading"
 
-export default Loading
+const DeleteLoading = () => {
+  return (
+    <Loading />
+  )
+}
+
+export default DeleteLoading

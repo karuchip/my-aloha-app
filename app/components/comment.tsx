@@ -3,6 +3,7 @@ import dayjs from "dayjs"
 import {useState, useEffect} from "react"
 import { useAuthContext } from "../AuthContext";
 import CommentCreate from "../components/commentCreate"
+import Loading from "./loading";
 
 
 type AllCommentType = {
@@ -49,7 +50,7 @@ const Comment = ({postId}:{postId:number}) => {
   }
 
   if (authLoading || commentLoading) {
-    return <p>読み込み中...</p>
+    return <Loading/>
   }
 
   return (

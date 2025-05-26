@@ -1223,6 +1223,8 @@ export namespace Prisma {
     email: string | null
     name: string | null
     password: string | null
+    userIcon: string | null
+    userProfile: string | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1230,6 +1232,8 @@ export namespace Prisma {
     email: string | null
     name: string | null
     password: string | null
+    userIcon: string | null
+    userProfile: string | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1237,6 +1241,8 @@ export namespace Prisma {
     email: number
     name: number
     password: number
+    userIcon: number
+    userProfile: number
     _all: number
   }
 
@@ -1254,6 +1260,8 @@ export namespace Prisma {
     email?: true
     name?: true
     password?: true
+    userIcon?: true
+    userProfile?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1261,6 +1269,8 @@ export namespace Prisma {
     email?: true
     name?: true
     password?: true
+    userIcon?: true
+    userProfile?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1268,6 +1278,8 @@ export namespace Prisma {
     email?: true
     name?: true
     password?: true
+    userIcon?: true
+    userProfile?: true
     _all?: true
   }
 
@@ -1362,6 +1374,8 @@ export namespace Prisma {
     email: string
     name: string
     password: string
+    userIcon: string
+    userProfile: string | null
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -1388,6 +1402,8 @@ export namespace Prisma {
     email?: boolean
     name?: boolean
     password?: boolean
+    userIcon?: boolean
+    userProfile?: boolean
     posts?: boolean | User$postsArgs<ExtArgs>
     postLikes?: boolean | User$postLikesArgs<ExtArgs>
     postComments?: boolean | User$postCommentsArgs<ExtArgs>
@@ -1401,9 +1417,11 @@ export namespace Prisma {
     email?: boolean
     name?: boolean
     password?: boolean
+    userIcon?: boolean
+    userProfile?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "password" | "userIcon" | "userProfile", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     posts?: boolean | User$postsArgs<ExtArgs>
     postLikes?: boolean | User$postLikesArgs<ExtArgs>
@@ -1423,6 +1441,8 @@ export namespace Prisma {
       email: string
       name: string
       password: string
+      userIcon: string
+      userProfile: string | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -1799,6 +1819,8 @@ export namespace Prisma {
     readonly email: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
+    readonly userIcon: FieldRef<"User", 'String'>
+    readonly userProfile: FieldRef<"User", 'String'>
   }
     
 
@@ -2265,10 +2287,19 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     title: string | null
-    description: string | null
-    image: string | null
+    image1: string | null
+    description1: string | null
+    image2: string | null
+    description2: string | null
+    image3: string | null
+    description3: string | null
+    image4: string | null
+    description4: string | null
+    image5: string | null
+    description5: string | null
     likeCount: number | null
-    place: string | null
+    location: string | null
+    googlePlace: string | null
     lat: number | null
     lon: number | null
     category: string | null
@@ -2281,10 +2312,19 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     title: string | null
-    description: string | null
-    image: string | null
+    image1: string | null
+    description1: string | null
+    image2: string | null
+    description2: string | null
+    image3: string | null
+    description3: string | null
+    image4: string | null
+    description4: string | null
+    image5: string | null
+    description5: string | null
     likeCount: number | null
-    place: string | null
+    location: string | null
+    googlePlace: string | null
     lat: number | null
     lon: number | null
     category: string | null
@@ -2297,10 +2337,19 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     title: number
-    description: number
-    image: number
+    image1: number
+    description1: number
+    image2: number
+    description2: number
+    image3: number
+    description3: number
+    image4: number
+    description4: number
+    image5: number
+    description5: number
     likeCount: number
-    place: number
+    location: number
+    googlePlace: number
     lat: number
     lon: number
     category: number
@@ -2331,10 +2380,19 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     title?: true
-    description?: true
-    image?: true
+    image1?: true
+    description1?: true
+    image2?: true
+    description2?: true
+    image3?: true
+    description3?: true
+    image4?: true
+    description4?: true
+    image5?: true
+    description5?: true
     likeCount?: true
-    place?: true
+    location?: true
+    googlePlace?: true
     lat?: true
     lon?: true
     category?: true
@@ -2347,10 +2405,19 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     title?: true
-    description?: true
-    image?: true
+    image1?: true
+    description1?: true
+    image2?: true
+    description2?: true
+    image3?: true
+    description3?: true
+    image4?: true
+    description4?: true
+    image5?: true
+    description5?: true
     likeCount?: true
-    place?: true
+    location?: true
+    googlePlace?: true
     lat?: true
     lon?: true
     category?: true
@@ -2363,10 +2430,19 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     title?: true
-    description?: true
-    image?: true
+    image1?: true
+    description1?: true
+    image2?: true
+    description2?: true
+    image3?: true
+    description3?: true
+    image4?: true
+    description4?: true
+    image5?: true
+    description5?: true
     likeCount?: true
-    place?: true
+    location?: true
+    googlePlace?: true
     lat?: true
     lon?: true
     category?: true
@@ -2466,10 +2542,19 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     title: string
-    description: string | null
-    image: string | null
+    image1: string | null
+    description1: string | null
+    image2: string | null
+    description2: string | null
+    image3: string | null
+    description3: string | null
+    image4: string | null
+    description4: string | null
+    image5: string | null
+    description5: string | null
     likeCount: number
-    place: string
+    location: string | null
+    googlePlace: string | null
     lat: number | null
     lon: number | null
     category: string
@@ -2501,10 +2586,19 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     title?: boolean
-    description?: boolean
-    image?: boolean
+    image1?: boolean
+    description1?: boolean
+    image2?: boolean
+    description2?: boolean
+    image3?: boolean
+    description3?: boolean
+    image4?: boolean
+    description4?: boolean
+    image5?: boolean
+    description5?: boolean
     likeCount?: boolean
-    place?: boolean
+    location?: boolean
+    googlePlace?: boolean
     lat?: boolean
     lon?: boolean
     category?: boolean
@@ -2523,10 +2617,19 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     title?: boolean
-    description?: boolean
-    image?: boolean
+    image1?: boolean
+    description1?: boolean
+    image2?: boolean
+    description2?: boolean
+    image3?: boolean
+    description3?: boolean
+    image4?: boolean
+    description4?: boolean
+    image5?: boolean
+    description5?: boolean
     likeCount?: boolean
-    place?: boolean
+    location?: boolean
+    googlePlace?: boolean
     lat?: boolean
     lon?: boolean
     category?: boolean
@@ -2534,7 +2637,7 @@ export namespace Prisma {
     authorId?: boolean
   }
 
-  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "title" | "description" | "image" | "likeCount" | "place" | "lat" | "lon" | "category" | "published" | "authorId", ExtArgs["result"]["post"]>
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "title" | "image1" | "description1" | "image2" | "description2" | "image3" | "description3" | "image4" | "description4" | "image5" | "description5" | "likeCount" | "location" | "googlePlace" | "lat" | "lon" | "category" | "published" | "authorId", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     author?: boolean | UserDefaultArgs<ExtArgs>
     likes?: boolean | Post$likesArgs<ExtArgs>
@@ -2554,10 +2657,19 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       title: string
-      description: string | null
-      image: string | null
+      image1: string | null
+      description1: string | null
+      image2: string | null
+      description2: string | null
+      image3: string | null
+      description3: string | null
+      image4: string | null
+      description4: string | null
+      image5: string | null
+      description5: string | null
       likeCount: number
-      place: string
+      location: string | null
+      googlePlace: string | null
       lat: number | null
       lon: number | null
       category: string
@@ -2939,10 +3051,19 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"Post", 'DateTime'>
     readonly updatedAt: FieldRef<"Post", 'DateTime'>
     readonly title: FieldRef<"Post", 'String'>
-    readonly description: FieldRef<"Post", 'String'>
-    readonly image: FieldRef<"Post", 'String'>
+    readonly image1: FieldRef<"Post", 'String'>
+    readonly description1: FieldRef<"Post", 'String'>
+    readonly image2: FieldRef<"Post", 'String'>
+    readonly description2: FieldRef<"Post", 'String'>
+    readonly image3: FieldRef<"Post", 'String'>
+    readonly description3: FieldRef<"Post", 'String'>
+    readonly image4: FieldRef<"Post", 'String'>
+    readonly description4: FieldRef<"Post", 'String'>
+    readonly image5: FieldRef<"Post", 'String'>
+    readonly description5: FieldRef<"Post", 'String'>
     readonly likeCount: FieldRef<"Post", 'Int'>
-    readonly place: FieldRef<"Post", 'String'>
+    readonly location: FieldRef<"Post", 'String'>
+    readonly googlePlace: FieldRef<"Post", 'String'>
     readonly lat: FieldRef<"Post", 'Float'>
     readonly lon: FieldRef<"Post", 'Float'>
     readonly category: FieldRef<"Post", 'String'>
@@ -5314,7 +5435,9 @@ export namespace Prisma {
     id: 'id',
     email: 'email',
     name: 'name',
-    password: 'password'
+    password: 'password',
+    userIcon: 'userIcon',
+    userProfile: 'userProfile'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -5325,10 +5448,19 @@ export namespace Prisma {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     title: 'title',
-    description: 'description',
-    image: 'image',
+    image1: 'image1',
+    description1: 'description1',
+    image2: 'image2',
+    description2: 'description2',
+    image3: 'image3',
+    description3: 'description3',
+    image4: 'image4',
+    description4: 'description4',
+    image5: 'image5',
+    description5: 'description5',
     likeCount: 'likeCount',
-    place: 'place',
+    location: 'location',
+    googlePlace: 'googlePlace',
     lat: 'lat',
     lon: 'lon',
     category: 'category',
@@ -5368,15 +5500,6 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-  export const UserOrderByRelevanceFieldEnum: {
-    email: 'email',
-    name: 'name',
-    password: 'password'
-  };
-
-  export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
-
-
   export const NullsOrder: {
     first: 'first',
     last: 'last'
@@ -5385,11 +5508,31 @@ export namespace Prisma {
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
+  export const UserOrderByRelevanceFieldEnum: {
+    email: 'email',
+    name: 'name',
+    password: 'password',
+    userIcon: 'userIcon',
+    userProfile: 'userProfile'
+  };
+
+  export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
+
+
   export const PostOrderByRelevanceFieldEnum: {
     title: 'title',
-    description: 'description',
-    image: 'image',
-    place: 'place',
+    image1: 'image1',
+    description1: 'description1',
+    image2: 'image2',
+    description2: 'description2',
+    image3: 'image3',
+    description3: 'description3',
+    image4: 'image4',
+    description4: 'description4',
+    image5: 'image5',
+    description5: 'description5',
+    location: 'location',
+    googlePlace: 'googlePlace',
     category: 'category'
   };
 
@@ -5454,6 +5597,8 @@ export namespace Prisma {
     email?: StringFilter<"User"> | string
     name?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
+    userIcon?: StringFilter<"User"> | string
+    userProfile?: StringNullableFilter<"User"> | string | null
     posts?: PostListRelationFilter
     postLikes?: PostLikesListRelationFilter
     postComments?: PostCommentsListRelationFilter
@@ -5464,6 +5609,8 @@ export namespace Prisma {
     email?: SortOrder
     name?: SortOrder
     password?: SortOrder
+    userIcon?: SortOrder
+    userProfile?: SortOrderInput | SortOrder
     posts?: PostOrderByRelationAggregateInput
     postLikes?: PostLikesOrderByRelationAggregateInput
     postComments?: PostCommentsOrderByRelationAggregateInput
@@ -5478,6 +5625,8 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
+    userIcon?: StringFilter<"User"> | string
+    userProfile?: StringNullableFilter<"User"> | string | null
     posts?: PostListRelationFilter
     postLikes?: PostLikesListRelationFilter
     postComments?: PostCommentsListRelationFilter
@@ -5488,6 +5637,8 @@ export namespace Prisma {
     email?: SortOrder
     name?: SortOrder
     password?: SortOrder
+    userIcon?: SortOrder
+    userProfile?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -5503,6 +5654,8 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"User"> | string
     name?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
+    userIcon?: StringWithAggregatesFilter<"User"> | string
+    userProfile?: StringNullableWithAggregatesFilter<"User"> | string | null
   }
 
   export type PostWhereInput = {
@@ -5513,10 +5666,19 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Post"> | Date | string
     updatedAt?: DateTimeFilter<"Post"> | Date | string
     title?: StringFilter<"Post"> | string
-    description?: StringNullableFilter<"Post"> | string | null
-    image?: StringNullableFilter<"Post"> | string | null
+    image1?: StringNullableFilter<"Post"> | string | null
+    description1?: StringNullableFilter<"Post"> | string | null
+    image2?: StringNullableFilter<"Post"> | string | null
+    description2?: StringNullableFilter<"Post"> | string | null
+    image3?: StringNullableFilter<"Post"> | string | null
+    description3?: StringNullableFilter<"Post"> | string | null
+    image4?: StringNullableFilter<"Post"> | string | null
+    description4?: StringNullableFilter<"Post"> | string | null
+    image5?: StringNullableFilter<"Post"> | string | null
+    description5?: StringNullableFilter<"Post"> | string | null
     likeCount?: IntFilter<"Post"> | number
-    place?: StringFilter<"Post"> | string
+    location?: StringNullableFilter<"Post"> | string | null
+    googlePlace?: StringNullableFilter<"Post"> | string | null
     lat?: FloatNullableFilter<"Post"> | number | null
     lon?: FloatNullableFilter<"Post"> | number | null
     category?: StringFilter<"Post"> | string
@@ -5532,10 +5694,19 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     title?: SortOrder
-    description?: SortOrderInput | SortOrder
-    image?: SortOrderInput | SortOrder
+    image1?: SortOrderInput | SortOrder
+    description1?: SortOrderInput | SortOrder
+    image2?: SortOrderInput | SortOrder
+    description2?: SortOrderInput | SortOrder
+    image3?: SortOrderInput | SortOrder
+    description3?: SortOrderInput | SortOrder
+    image4?: SortOrderInput | SortOrder
+    description4?: SortOrderInput | SortOrder
+    image5?: SortOrderInput | SortOrder
+    description5?: SortOrderInput | SortOrder
     likeCount?: SortOrder
-    place?: SortOrder
+    location?: SortOrderInput | SortOrder
+    googlePlace?: SortOrderInput | SortOrder
     lat?: SortOrderInput | SortOrder
     lon?: SortOrderInput | SortOrder
     category?: SortOrder
@@ -5555,10 +5726,19 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Post"> | Date | string
     updatedAt?: DateTimeFilter<"Post"> | Date | string
     title?: StringFilter<"Post"> | string
-    description?: StringNullableFilter<"Post"> | string | null
-    image?: StringNullableFilter<"Post"> | string | null
+    image1?: StringNullableFilter<"Post"> | string | null
+    description1?: StringNullableFilter<"Post"> | string | null
+    image2?: StringNullableFilter<"Post"> | string | null
+    description2?: StringNullableFilter<"Post"> | string | null
+    image3?: StringNullableFilter<"Post"> | string | null
+    description3?: StringNullableFilter<"Post"> | string | null
+    image4?: StringNullableFilter<"Post"> | string | null
+    description4?: StringNullableFilter<"Post"> | string | null
+    image5?: StringNullableFilter<"Post"> | string | null
+    description5?: StringNullableFilter<"Post"> | string | null
     likeCount?: IntFilter<"Post"> | number
-    place?: StringFilter<"Post"> | string
+    location?: StringNullableFilter<"Post"> | string | null
+    googlePlace?: StringNullableFilter<"Post"> | string | null
     lat?: FloatNullableFilter<"Post"> | number | null
     lon?: FloatNullableFilter<"Post"> | number | null
     category?: StringFilter<"Post"> | string
@@ -5574,10 +5754,19 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     title?: SortOrder
-    description?: SortOrderInput | SortOrder
-    image?: SortOrderInput | SortOrder
+    image1?: SortOrderInput | SortOrder
+    description1?: SortOrderInput | SortOrder
+    image2?: SortOrderInput | SortOrder
+    description2?: SortOrderInput | SortOrder
+    image3?: SortOrderInput | SortOrder
+    description3?: SortOrderInput | SortOrder
+    image4?: SortOrderInput | SortOrder
+    description4?: SortOrderInput | SortOrder
+    image5?: SortOrderInput | SortOrder
+    description5?: SortOrderInput | SortOrder
     likeCount?: SortOrder
-    place?: SortOrder
+    location?: SortOrderInput | SortOrder
+    googlePlace?: SortOrderInput | SortOrder
     lat?: SortOrderInput | SortOrder
     lon?: SortOrderInput | SortOrder
     category?: SortOrder
@@ -5598,10 +5787,19 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
     title?: StringWithAggregatesFilter<"Post"> | string
-    description?: StringNullableWithAggregatesFilter<"Post"> | string | null
-    image?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    image1?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    description1?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    image2?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    description2?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    image3?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    description3?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    image4?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    description4?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    image5?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    description5?: StringNullableWithAggregatesFilter<"Post"> | string | null
     likeCount?: IntWithAggregatesFilter<"Post"> | number
-    place?: StringWithAggregatesFilter<"Post"> | string
+    location?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    googlePlace?: StringNullableWithAggregatesFilter<"Post"> | string | null
     lat?: FloatNullableWithAggregatesFilter<"Post"> | number | null
     lon?: FloatNullableWithAggregatesFilter<"Post"> | number | null
     category?: StringWithAggregatesFilter<"Post"> | string
@@ -5730,6 +5928,8 @@ export namespace Prisma {
     email: string
     name: string
     password: string
+    userIcon: string
+    userProfile?: string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     postLikes?: PostLikesCreateNestedManyWithoutUserInput
     postComments?: PostCommentsCreateNestedManyWithoutUserInput
@@ -5740,6 +5940,8 @@ export namespace Prisma {
     email: string
     name: string
     password: string
+    userIcon: string
+    userProfile?: string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     postLikes?: PostLikesUncheckedCreateNestedManyWithoutUserInput
     postComments?: PostCommentsUncheckedCreateNestedManyWithoutUserInput
@@ -5749,6 +5951,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    userIcon?: StringFieldUpdateOperationsInput | string
+    userProfile?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     postLikes?: PostLikesUpdateManyWithoutUserNestedInput
     postComments?: PostCommentsUpdateManyWithoutUserNestedInput
@@ -5759,6 +5963,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    userIcon?: StringFieldUpdateOperationsInput | string
+    userProfile?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     postLikes?: PostLikesUncheckedUpdateManyWithoutUserNestedInput
     postComments?: PostCommentsUncheckedUpdateManyWithoutUserNestedInput
@@ -5769,12 +5975,16 @@ export namespace Prisma {
     email: string
     name: string
     password: string
+    userIcon: string
+    userProfile?: string | null
   }
 
   export type UserUpdateManyMutationInput = {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    userIcon?: StringFieldUpdateOperationsInput | string
+    userProfile?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -5782,16 +5992,27 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    userIcon?: StringFieldUpdateOperationsInput | string
+    userProfile?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PostCreateInput = {
     createdAt?: Date | string
     updatedAt?: Date | string
     title: string
-    description?: string | null
-    image?: string | null
+    image1?: string | null
+    description1?: string | null
+    image2?: string | null
+    description2?: string | null
+    image3?: string | null
+    description3?: string | null
+    image4?: string | null
+    description4?: string | null
+    image5?: string | null
+    description5?: string | null
     likeCount?: number
-    place?: string
+    location?: string | null
+    googlePlace?: string | null
     lat?: number | null
     lon?: number | null
     category?: string
@@ -5806,10 +6027,19 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     title: string
-    description?: string | null
-    image?: string | null
+    image1?: string | null
+    description1?: string | null
+    image2?: string | null
+    description2?: string | null
+    image3?: string | null
+    description3?: string | null
+    image4?: string | null
+    description4?: string | null
+    image5?: string | null
+    description5?: string | null
     likeCount?: number
-    place?: string
+    location?: string | null
+    googlePlace?: string | null
     lat?: number | null
     lon?: number | null
     category?: string
@@ -5823,10 +6053,19 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
+    image1?: NullableStringFieldUpdateOperationsInput | string | null
+    description1?: NullableStringFieldUpdateOperationsInput | string | null
+    image2?: NullableStringFieldUpdateOperationsInput | string | null
+    description2?: NullableStringFieldUpdateOperationsInput | string | null
+    image3?: NullableStringFieldUpdateOperationsInput | string | null
+    description3?: NullableStringFieldUpdateOperationsInput | string | null
+    image4?: NullableStringFieldUpdateOperationsInput | string | null
+    description4?: NullableStringFieldUpdateOperationsInput | string | null
+    image5?: NullableStringFieldUpdateOperationsInput | string | null
+    description5?: NullableStringFieldUpdateOperationsInput | string | null
     likeCount?: IntFieldUpdateOperationsInput | number
-    place?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    googlePlace?: NullableStringFieldUpdateOperationsInput | string | null
     lat?: NullableFloatFieldUpdateOperationsInput | number | null
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
     category?: StringFieldUpdateOperationsInput | string
@@ -5841,10 +6080,19 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
+    image1?: NullableStringFieldUpdateOperationsInput | string | null
+    description1?: NullableStringFieldUpdateOperationsInput | string | null
+    image2?: NullableStringFieldUpdateOperationsInput | string | null
+    description2?: NullableStringFieldUpdateOperationsInput | string | null
+    image3?: NullableStringFieldUpdateOperationsInput | string | null
+    description3?: NullableStringFieldUpdateOperationsInput | string | null
+    image4?: NullableStringFieldUpdateOperationsInput | string | null
+    description4?: NullableStringFieldUpdateOperationsInput | string | null
+    image5?: NullableStringFieldUpdateOperationsInput | string | null
+    description5?: NullableStringFieldUpdateOperationsInput | string | null
     likeCount?: IntFieldUpdateOperationsInput | number
-    place?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    googlePlace?: NullableStringFieldUpdateOperationsInput | string | null
     lat?: NullableFloatFieldUpdateOperationsInput | number | null
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
     category?: StringFieldUpdateOperationsInput | string
@@ -5859,10 +6107,19 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     title: string
-    description?: string | null
-    image?: string | null
+    image1?: string | null
+    description1?: string | null
+    image2?: string | null
+    description2?: string | null
+    image3?: string | null
+    description3?: string | null
+    image4?: string | null
+    description4?: string | null
+    image5?: string | null
+    description5?: string | null
     likeCount?: number
-    place?: string
+    location?: string | null
+    googlePlace?: string | null
     lat?: number | null
     lon?: number | null
     category?: string
@@ -5874,10 +6131,19 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
+    image1?: NullableStringFieldUpdateOperationsInput | string | null
+    description1?: NullableStringFieldUpdateOperationsInput | string | null
+    image2?: NullableStringFieldUpdateOperationsInput | string | null
+    description2?: NullableStringFieldUpdateOperationsInput | string | null
+    image3?: NullableStringFieldUpdateOperationsInput | string | null
+    description3?: NullableStringFieldUpdateOperationsInput | string | null
+    image4?: NullableStringFieldUpdateOperationsInput | string | null
+    description4?: NullableStringFieldUpdateOperationsInput | string | null
+    image5?: NullableStringFieldUpdateOperationsInput | string | null
+    description5?: NullableStringFieldUpdateOperationsInput | string | null
     likeCount?: IntFieldUpdateOperationsInput | number
-    place?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    googlePlace?: NullableStringFieldUpdateOperationsInput | string | null
     lat?: NullableFloatFieldUpdateOperationsInput | number | null
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
     category?: StringFieldUpdateOperationsInput | string
@@ -5889,10 +6155,19 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
+    image1?: NullableStringFieldUpdateOperationsInput | string | null
+    description1?: NullableStringFieldUpdateOperationsInput | string | null
+    image2?: NullableStringFieldUpdateOperationsInput | string | null
+    description2?: NullableStringFieldUpdateOperationsInput | string | null
+    image3?: NullableStringFieldUpdateOperationsInput | string | null
+    description3?: NullableStringFieldUpdateOperationsInput | string | null
+    image4?: NullableStringFieldUpdateOperationsInput | string | null
+    description4?: NullableStringFieldUpdateOperationsInput | string | null
+    image5?: NullableStringFieldUpdateOperationsInput | string | null
+    description5?: NullableStringFieldUpdateOperationsInput | string | null
     likeCount?: IntFieldUpdateOperationsInput | number
-    place?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    googlePlace?: NullableStringFieldUpdateOperationsInput | string | null
     lat?: NullableFloatFieldUpdateOperationsInput | number | null
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
     category?: StringFieldUpdateOperationsInput | string
@@ -6021,6 +6296,21 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type PostListRelationFilter = {
     every?: PostWhereInput
     some?: PostWhereInput
@@ -6037,6 +6327,11 @@ export namespace Prisma {
     every?: PostCommentsWhereInput
     some?: PostCommentsWhereInput
     none?: PostCommentsWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type PostOrderByRelationAggregateInput = {
@@ -6062,6 +6357,8 @@ export namespace Prisma {
     email?: SortOrder
     name?: SortOrder
     password?: SortOrder
+    userIcon?: SortOrder
+    userProfile?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -6073,6 +6370,8 @@ export namespace Prisma {
     email?: SortOrder
     name?: SortOrder
     password?: SortOrder
+    userIcon?: SortOrder
+    userProfile?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -6080,6 +6379,8 @@ export namespace Prisma {
     email?: SortOrder
     name?: SortOrder
     password?: SortOrder
+    userIcon?: SortOrder
+    userProfile?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -6120,18 +6421,7 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type StringNullableFilter<$PrismaModel = never> = {
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | null
     notIn?: string[] | null
@@ -6143,7 +6433,21 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     search?: string
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type FloatNullableFilter<$PrismaModel = never> = {
@@ -6167,11 +6471,6 @@ export namespace Prisma {
     isNot?: UserWhereInput
   }
 
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
-  }
-
   export type PostOrderByRelevanceInput = {
     fields: PostOrderByRelevanceFieldEnum | PostOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -6183,10 +6482,19 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     title?: SortOrder
-    description?: SortOrder
-    image?: SortOrder
+    image1?: SortOrder
+    description1?: SortOrder
+    image2?: SortOrder
+    description2?: SortOrder
+    image3?: SortOrder
+    description3?: SortOrder
+    image4?: SortOrder
+    description4?: SortOrder
+    image5?: SortOrder
+    description5?: SortOrder
     likeCount?: SortOrder
-    place?: SortOrder
+    location?: SortOrder
+    googlePlace?: SortOrder
     lat?: SortOrder
     lon?: SortOrder
     category?: SortOrder
@@ -6207,10 +6515,19 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     title?: SortOrder
-    description?: SortOrder
-    image?: SortOrder
+    image1?: SortOrder
+    description1?: SortOrder
+    image2?: SortOrder
+    description2?: SortOrder
+    image3?: SortOrder
+    description3?: SortOrder
+    image4?: SortOrder
+    description4?: SortOrder
+    image5?: SortOrder
+    description5?: SortOrder
     likeCount?: SortOrder
-    place?: SortOrder
+    location?: SortOrder
+    googlePlace?: SortOrder
     lat?: SortOrder
     lon?: SortOrder
     category?: SortOrder
@@ -6223,10 +6540,19 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     title?: SortOrder
-    description?: SortOrder
-    image?: SortOrder
+    image1?: SortOrder
+    description1?: SortOrder
+    image2?: SortOrder
+    description2?: SortOrder
+    image3?: SortOrder
+    description3?: SortOrder
+    image4?: SortOrder
+    description4?: SortOrder
+    image5?: SortOrder
+    description5?: SortOrder
     likeCount?: SortOrder
-    place?: SortOrder
+    location?: SortOrder
+    googlePlace?: SortOrder
     lat?: SortOrder
     lon?: SortOrder
     category?: SortOrder
@@ -6254,24 +6580,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -6429,6 +6737,10 @@ export namespace Prisma {
     set?: string
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type PostUpdateManyWithoutAuthorNestedInput = {
     create?: XOR<PostCreateWithoutAuthorInput, PostUncheckedCreateWithoutAuthorInput> | PostCreateWithoutAuthorInput[] | PostUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: PostCreateOrConnectWithoutAuthorInput | PostCreateOrConnectWithoutAuthorInput[]
@@ -6557,10 +6869,6 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type NullableFloatFieldUpdateOperationsInput = {
@@ -6721,6 +7029,21 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -6766,18 +7089,7 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | null
     notIn?: string[] | null
@@ -6789,7 +7101,32 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     search?: string
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedFloatNullableFilter<$PrismaModel = never> = {
@@ -6822,35 +7159,6 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | null
@@ -6879,10 +7187,19 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     title: string
-    description?: string | null
-    image?: string | null
+    image1?: string | null
+    description1?: string | null
+    image2?: string | null
+    description2?: string | null
+    image3?: string | null
+    description3?: string | null
+    image4?: string | null
+    description4?: string | null
+    image5?: string | null
+    description5?: string | null
     likeCount?: number
-    place?: string
+    location?: string | null
+    googlePlace?: string | null
     lat?: number | null
     lon?: number | null
     category?: string
@@ -6896,10 +7213,19 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     title: string
-    description?: string | null
-    image?: string | null
+    image1?: string | null
+    description1?: string | null
+    image2?: string | null
+    description2?: string | null
+    image3?: string | null
+    description3?: string | null
+    image4?: string | null
+    description4?: string | null
+    image5?: string | null
+    description5?: string | null
     likeCount?: number
-    place?: string
+    location?: string | null
+    googlePlace?: string | null
     lat?: number | null
     lon?: number | null
     category?: string
@@ -6986,10 +7312,19 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Post"> | Date | string
     updatedAt?: DateTimeFilter<"Post"> | Date | string
     title?: StringFilter<"Post"> | string
-    description?: StringNullableFilter<"Post"> | string | null
-    image?: StringNullableFilter<"Post"> | string | null
+    image1?: StringNullableFilter<"Post"> | string | null
+    description1?: StringNullableFilter<"Post"> | string | null
+    image2?: StringNullableFilter<"Post"> | string | null
+    description2?: StringNullableFilter<"Post"> | string | null
+    image3?: StringNullableFilter<"Post"> | string | null
+    description3?: StringNullableFilter<"Post"> | string | null
+    image4?: StringNullableFilter<"Post"> | string | null
+    description4?: StringNullableFilter<"Post"> | string | null
+    image5?: StringNullableFilter<"Post"> | string | null
+    description5?: StringNullableFilter<"Post"> | string | null
     likeCount?: IntFilter<"Post"> | number
-    place?: StringFilter<"Post"> | string
+    location?: StringNullableFilter<"Post"> | string | null
+    googlePlace?: StringNullableFilter<"Post"> | string | null
     lat?: FloatNullableFilter<"Post"> | number | null
     lon?: FloatNullableFilter<"Post"> | number | null
     category?: StringFilter<"Post"> | string
@@ -7054,6 +7389,8 @@ export namespace Prisma {
     email: string
     name: string
     password: string
+    userIcon: string
+    userProfile?: string | null
     postLikes?: PostLikesCreateNestedManyWithoutUserInput
     postComments?: PostCommentsCreateNestedManyWithoutUserInput
   }
@@ -7063,6 +7400,8 @@ export namespace Prisma {
     email: string
     name: string
     password: string
+    userIcon: string
+    userProfile?: string | null
     postLikes?: PostLikesUncheckedCreateNestedManyWithoutUserInput
     postComments?: PostCommentsUncheckedCreateNestedManyWithoutUserInput
   }
@@ -7131,6 +7470,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    userIcon?: StringFieldUpdateOperationsInput | string
+    userProfile?: NullableStringFieldUpdateOperationsInput | string | null
     postLikes?: PostLikesUpdateManyWithoutUserNestedInput
     postComments?: PostCommentsUpdateManyWithoutUserNestedInput
   }
@@ -7140,6 +7481,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    userIcon?: StringFieldUpdateOperationsInput | string
+    userProfile?: NullableStringFieldUpdateOperationsInput | string | null
     postLikes?: PostLikesUncheckedUpdateManyWithoutUserNestedInput
     postComments?: PostCommentsUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -7180,10 +7523,19 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     title: string
-    description?: string | null
-    image?: string | null
+    image1?: string | null
+    description1?: string | null
+    image2?: string | null
+    description2?: string | null
+    image3?: string | null
+    description3?: string | null
+    image4?: string | null
+    description4?: string | null
+    image5?: string | null
+    description5?: string | null
     likeCount?: number
-    place?: string
+    location?: string | null
+    googlePlace?: string | null
     lat?: number | null
     lon?: number | null
     category?: string
@@ -7197,10 +7549,19 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     title: string
-    description?: string | null
-    image?: string | null
+    image1?: string | null
+    description1?: string | null
+    image2?: string | null
+    description2?: string | null
+    image3?: string | null
+    description3?: string | null
+    image4?: string | null
+    description4?: string | null
+    image5?: string | null
+    description5?: string | null
     likeCount?: number
-    place?: string
+    location?: string | null
+    googlePlace?: string | null
     lat?: number | null
     lon?: number | null
     category?: string
@@ -7218,6 +7579,8 @@ export namespace Prisma {
     email: string
     name: string
     password: string
+    userIcon: string
+    userProfile?: string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     postComments?: PostCommentsCreateNestedManyWithoutUserInput
   }
@@ -7227,6 +7590,8 @@ export namespace Prisma {
     email: string
     name: string
     password: string
+    userIcon: string
+    userProfile?: string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     postComments?: PostCommentsUncheckedCreateNestedManyWithoutUserInput
   }
@@ -7251,10 +7616,19 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
+    image1?: NullableStringFieldUpdateOperationsInput | string | null
+    description1?: NullableStringFieldUpdateOperationsInput | string | null
+    image2?: NullableStringFieldUpdateOperationsInput | string | null
+    description2?: NullableStringFieldUpdateOperationsInput | string | null
+    image3?: NullableStringFieldUpdateOperationsInput | string | null
+    description3?: NullableStringFieldUpdateOperationsInput | string | null
+    image4?: NullableStringFieldUpdateOperationsInput | string | null
+    description4?: NullableStringFieldUpdateOperationsInput | string | null
+    image5?: NullableStringFieldUpdateOperationsInput | string | null
+    description5?: NullableStringFieldUpdateOperationsInput | string | null
     likeCount?: IntFieldUpdateOperationsInput | number
-    place?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    googlePlace?: NullableStringFieldUpdateOperationsInput | string | null
     lat?: NullableFloatFieldUpdateOperationsInput | number | null
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
     category?: StringFieldUpdateOperationsInput | string
@@ -7268,10 +7642,19 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
+    image1?: NullableStringFieldUpdateOperationsInput | string | null
+    description1?: NullableStringFieldUpdateOperationsInput | string | null
+    image2?: NullableStringFieldUpdateOperationsInput | string | null
+    description2?: NullableStringFieldUpdateOperationsInput | string | null
+    image3?: NullableStringFieldUpdateOperationsInput | string | null
+    description3?: NullableStringFieldUpdateOperationsInput | string | null
+    image4?: NullableStringFieldUpdateOperationsInput | string | null
+    description4?: NullableStringFieldUpdateOperationsInput | string | null
+    image5?: NullableStringFieldUpdateOperationsInput | string | null
+    description5?: NullableStringFieldUpdateOperationsInput | string | null
     likeCount?: IntFieldUpdateOperationsInput | number
-    place?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    googlePlace?: NullableStringFieldUpdateOperationsInput | string | null
     lat?: NullableFloatFieldUpdateOperationsInput | number | null
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
     category?: StringFieldUpdateOperationsInput | string
@@ -7295,6 +7678,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    userIcon?: StringFieldUpdateOperationsInput | string
+    userProfile?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     postComments?: PostCommentsUpdateManyWithoutUserNestedInput
   }
@@ -7304,6 +7689,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    userIcon?: StringFieldUpdateOperationsInput | string
+    userProfile?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     postComments?: PostCommentsUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -7312,10 +7699,19 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     title: string
-    description?: string | null
-    image?: string | null
+    image1?: string | null
+    description1?: string | null
+    image2?: string | null
+    description2?: string | null
+    image3?: string | null
+    description3?: string | null
+    image4?: string | null
+    description4?: string | null
+    image5?: string | null
+    description5?: string | null
     likeCount?: number
-    place?: string
+    location?: string | null
+    googlePlace?: string | null
     lat?: number | null
     lon?: number | null
     category?: string
@@ -7329,10 +7725,19 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     title: string
-    description?: string | null
-    image?: string | null
+    image1?: string | null
+    description1?: string | null
+    image2?: string | null
+    description2?: string | null
+    image3?: string | null
+    description3?: string | null
+    image4?: string | null
+    description4?: string | null
+    image5?: string | null
+    description5?: string | null
     likeCount?: number
-    place?: string
+    location?: string | null
+    googlePlace?: string | null
     lat?: number | null
     lon?: number | null
     category?: string
@@ -7350,6 +7755,8 @@ export namespace Prisma {
     email: string
     name: string
     password: string
+    userIcon: string
+    userProfile?: string | null
     posts?: PostCreateNestedManyWithoutAuthorInput
     postLikes?: PostLikesCreateNestedManyWithoutUserInput
   }
@@ -7359,6 +7766,8 @@ export namespace Prisma {
     email: string
     name: string
     password: string
+    userIcon: string
+    userProfile?: string | null
     posts?: PostUncheckedCreateNestedManyWithoutAuthorInput
     postLikes?: PostLikesUncheckedCreateNestedManyWithoutUserInput
   }
@@ -7383,10 +7792,19 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
+    image1?: NullableStringFieldUpdateOperationsInput | string | null
+    description1?: NullableStringFieldUpdateOperationsInput | string | null
+    image2?: NullableStringFieldUpdateOperationsInput | string | null
+    description2?: NullableStringFieldUpdateOperationsInput | string | null
+    image3?: NullableStringFieldUpdateOperationsInput | string | null
+    description3?: NullableStringFieldUpdateOperationsInput | string | null
+    image4?: NullableStringFieldUpdateOperationsInput | string | null
+    description4?: NullableStringFieldUpdateOperationsInput | string | null
+    image5?: NullableStringFieldUpdateOperationsInput | string | null
+    description5?: NullableStringFieldUpdateOperationsInput | string | null
     likeCount?: IntFieldUpdateOperationsInput | number
-    place?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    googlePlace?: NullableStringFieldUpdateOperationsInput | string | null
     lat?: NullableFloatFieldUpdateOperationsInput | number | null
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
     category?: StringFieldUpdateOperationsInput | string
@@ -7400,10 +7818,19 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
+    image1?: NullableStringFieldUpdateOperationsInput | string | null
+    description1?: NullableStringFieldUpdateOperationsInput | string | null
+    image2?: NullableStringFieldUpdateOperationsInput | string | null
+    description2?: NullableStringFieldUpdateOperationsInput | string | null
+    image3?: NullableStringFieldUpdateOperationsInput | string | null
+    description3?: NullableStringFieldUpdateOperationsInput | string | null
+    image4?: NullableStringFieldUpdateOperationsInput | string | null
+    description4?: NullableStringFieldUpdateOperationsInput | string | null
+    image5?: NullableStringFieldUpdateOperationsInput | string | null
+    description5?: NullableStringFieldUpdateOperationsInput | string | null
     likeCount?: IntFieldUpdateOperationsInput | number
-    place?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    googlePlace?: NullableStringFieldUpdateOperationsInput | string | null
     lat?: NullableFloatFieldUpdateOperationsInput | number | null
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
     category?: StringFieldUpdateOperationsInput | string
@@ -7427,6 +7854,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    userIcon?: StringFieldUpdateOperationsInput | string
+    userProfile?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: PostUpdateManyWithoutAuthorNestedInput
     postLikes?: PostLikesUpdateManyWithoutUserNestedInput
   }
@@ -7436,6 +7865,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    userIcon?: StringFieldUpdateOperationsInput | string
+    userProfile?: NullableStringFieldUpdateOperationsInput | string | null
     posts?: PostUncheckedUpdateManyWithoutAuthorNestedInput
     postLikes?: PostLikesUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -7445,10 +7876,19 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     title: string
-    description?: string | null
-    image?: string | null
+    image1?: string | null
+    description1?: string | null
+    image2?: string | null
+    description2?: string | null
+    image3?: string | null
+    description3?: string | null
+    image4?: string | null
+    description4?: string | null
+    image5?: string | null
+    description5?: string | null
     likeCount?: number
-    place?: string
+    location?: string | null
+    googlePlace?: string | null
     lat?: number | null
     lon?: number | null
     category?: string
@@ -7472,10 +7912,19 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
+    image1?: NullableStringFieldUpdateOperationsInput | string | null
+    description1?: NullableStringFieldUpdateOperationsInput | string | null
+    image2?: NullableStringFieldUpdateOperationsInput | string | null
+    description2?: NullableStringFieldUpdateOperationsInput | string | null
+    image3?: NullableStringFieldUpdateOperationsInput | string | null
+    description3?: NullableStringFieldUpdateOperationsInput | string | null
+    image4?: NullableStringFieldUpdateOperationsInput | string | null
+    description4?: NullableStringFieldUpdateOperationsInput | string | null
+    image5?: NullableStringFieldUpdateOperationsInput | string | null
+    description5?: NullableStringFieldUpdateOperationsInput | string | null
     likeCount?: IntFieldUpdateOperationsInput | number
-    place?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    googlePlace?: NullableStringFieldUpdateOperationsInput | string | null
     lat?: NullableFloatFieldUpdateOperationsInput | number | null
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
     category?: StringFieldUpdateOperationsInput | string
@@ -7489,10 +7938,19 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
+    image1?: NullableStringFieldUpdateOperationsInput | string | null
+    description1?: NullableStringFieldUpdateOperationsInput | string | null
+    image2?: NullableStringFieldUpdateOperationsInput | string | null
+    description2?: NullableStringFieldUpdateOperationsInput | string | null
+    image3?: NullableStringFieldUpdateOperationsInput | string | null
+    description3?: NullableStringFieldUpdateOperationsInput | string | null
+    image4?: NullableStringFieldUpdateOperationsInput | string | null
+    description4?: NullableStringFieldUpdateOperationsInput | string | null
+    image5?: NullableStringFieldUpdateOperationsInput | string | null
+    description5?: NullableStringFieldUpdateOperationsInput | string | null
     likeCount?: IntFieldUpdateOperationsInput | number
-    place?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    googlePlace?: NullableStringFieldUpdateOperationsInput | string | null
     lat?: NullableFloatFieldUpdateOperationsInput | number | null
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
     category?: StringFieldUpdateOperationsInput | string
@@ -7506,10 +7964,19 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
+    image1?: NullableStringFieldUpdateOperationsInput | string | null
+    description1?: NullableStringFieldUpdateOperationsInput | string | null
+    image2?: NullableStringFieldUpdateOperationsInput | string | null
+    description2?: NullableStringFieldUpdateOperationsInput | string | null
+    image3?: NullableStringFieldUpdateOperationsInput | string | null
+    description3?: NullableStringFieldUpdateOperationsInput | string | null
+    image4?: NullableStringFieldUpdateOperationsInput | string | null
+    description4?: NullableStringFieldUpdateOperationsInput | string | null
+    image5?: NullableStringFieldUpdateOperationsInput | string | null
+    description5?: NullableStringFieldUpdateOperationsInput | string | null
     likeCount?: IntFieldUpdateOperationsInput | number
-    place?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    googlePlace?: NullableStringFieldUpdateOperationsInput | string | null
     lat?: NullableFloatFieldUpdateOperationsInput | number | null
     lon?: NullableFloatFieldUpdateOperationsInput | number | null
     category?: StringFieldUpdateOperationsInput | string

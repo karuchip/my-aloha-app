@@ -4,36 +4,11 @@ import dayjs from "dayjs"
 import { Suspense } from "react"
 import LikeCount from "../../../components/likeCount"
 import Comment from "../../../components/comment"
-import GoogleMap from "../../../components/googleMap"
 import {Paper} from "@mui/material"
 import {Typography, Button} from "@mui/material"
+import { AllItemTypes } from "@/utils/types/post"
+import GoogleMap from "@/app/components/googleMap"
 
-
-type Props = {
-  params: {
-    id:string
-  }
-}
-
-type SingleItemTypes = {
-  id: number,
-  createdAt: Date,
-  updatedAt: Date,
-  title: string,
-  description: string,
-  image: string,
-  likeCount: number,
-  place: string,
-  lat: number,
-  lon: number,
-  category: string,
-  published: boolean,
-  authorId: number,
-  author: {
-    id: number,
-    name: string
-  } | null
-}
 
 export const dynamic = "force-dynamic"
 
@@ -46,24 +21,22 @@ const getSingleItem = async(id: string) => {
 
 const ReadSingleItem = async({params}:any) => {
 
-  const singleItem:SingleItemTypes | null = await getSingleItem(params.id)
+  const singleItem:AllItemTypes | null = await getSingleItem(params.id)
 
 
   if(!singleItem) {
     return <div>投稿が見つかりませんでした</div>
   }
 
-  const createdAtFormatted = dayjs(new Date(singleItem.createdAt)).format("YYYY/MM/DD HH:mm")
-  const updatedAtFormatted = dayjs(new Date(singleItem.updatedAt)).format("YYYY/MM/DD HH:mm")
+  const createdAtFormatted = dayjs(new Date(singleItem.createdAt)).format("YYYY/MM/DD")
+  const updatedAtFormatted = dayjs(new Date(singleItem.updatedAt)).format("YYYY/MM/DD")
   const postId = Number(singleItem.id)
-
-
 
   return(
     <div className="singleItemContainer">
       <div style={{ position: 'relative', width: '100%', height: '600px' }}>
         <Image
-          src={singleItem.image}
+          src={singleItem.image1}
           alt="item-image"
           fill
           style={{ objectFit: 'cover' }}
@@ -74,10 +47,10 @@ const ReadSingleItem = async({params}:any) => {
         <div className="operationButtons">
           <LikeCount likeCount={singleItem.likeCount} id={singleItem.id} />
           <div className="editedDay">
-            <p>posted: {createdAtFormatted}</p>
-            {(createdAtFormatted !== updatedAtFormatted) &&
+            <p>{createdAtFormatted}</p>
+            {/* {(createdAtFormatted !== updatedAtFormatted) &&
                 <p>edited : {updatedAtFormatted}</p>
-            }
+            } */}
           </div>
         </div>
         <div className="postContent">
@@ -89,7 +62,7 @@ const ReadSingleItem = async({params}:any) => {
           )}
           <div className="marqueeContainer">
             <div className="marquee">
-              <p>{singleItem.description}</p>
+              <p>{singleItem.description1}</p>
             </div>
           </div>
 
@@ -111,7 +84,7 @@ const ReadSingleItem = async({params}:any) => {
 
         </Typography>
         <div style={{display:"flex", justifyContent:"center"}}>
-          <p style={{width:"content-fit"}}>場所: {singleItem.place}</p>
+          <p style={{width:"content-fit"}}>場所: {singleItem.googlePlace}</p>
         </div>
         <Suspense fallback={<div>地図を読み込み中...</div>}>
           <GoogleMap lat={singleItem.lat} lng={singleItem.lon}/>
@@ -142,6 +115,7 @@ const ReadSingleItem = async({params}:any) => {
         </Suspense>
       </div>
       <div className="backToList"><Link href={`/`} >一覧に戻る</Link></div>
+
       <div className="editDeleteButton">
         <div>
           <Link href={`/post/update/${postId}`}>

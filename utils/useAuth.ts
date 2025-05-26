@@ -11,9 +11,11 @@ const useAuth = (shouldRedirect = true) => {
     loginUserId,
     loginUserName,
     loginUserEmail,
+    loginUserIcon,
     setLoginUserId,
     setLoginUserName,
-    setLoginUserEmail
+    setLoginUserEmail,
+    setLoginUserIcon
   } = useAuthContext()
   const {loading, setLoading} = useAuthContext()
 
@@ -32,11 +34,16 @@ const useAuth = (shouldRedirect = true) => {
       try {
         const secretKey = new TextEncoder().encode("my-aloha-app-book")
         const decodedJwt = await jwtVerify(token, secretKey)
-        const payload = decodedJwt.payload as {email: string, name: string, id:string}
+        const payload = decodedJwt.payload as {email: string, name: string, id:string, userIcon:string}
         setLoginUserEmail(payload.email)
         setLoginUserName(payload.name)
         setLoginUserId(payload.id)
-      }catch(error) {
+        setLoginUserIcon(payload.userIcon)
+      }catch(error:any) {
+        if(error.name === "JWTExpired") {
+          console.warn("JWTの有効期限が切れています。ログアウト処理へ。");
+          router.push("/user/logout")
+        }
         console.error("トークン検証失敗:", error)
         if(shouldRedirect) router.push("/user/login")
       }finally {
@@ -46,7 +53,7 @@ const useAuth = (shouldRedirect = true) => {
 
     checkToken()
 
-  }, [router, shouldRedirect, setLoginUserEmail, setLoginUserName, setLoginUserId])
+  }, [])
 
   return {
     loginUserEmail,

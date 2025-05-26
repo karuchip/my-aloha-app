@@ -4,6 +4,7 @@ import { useAuthContext } from "../AuthContext"
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Typography from '@mui/material/Typography'
+import Loading from "./loading";
 
 type likeCountProps = {
   likeCount: number
@@ -17,6 +18,7 @@ const LikeCount = ({likeCount, id}:likeCountProps) => {
   const {loginUserId, loading} = useAuthContext()
   const [count, setCount] = useState<number>(likeCount)
   const [hasLiked, setHasLiked] = useState<boolean>(false)
+  const [notLikeYet, setNotLikeYet] = useState(false)
 
   useEffect (() => {
     setCount(likeCount);
@@ -46,6 +48,7 @@ const LikeCount = ({likeCount, id}:likeCountProps) => {
 
   //likeボタン押下時
   const handleSubmit = async() => {
+    setNotLikeYet(true)
 
     if(!loginUserId) {
       alert("ログインしてください")
@@ -80,6 +83,8 @@ const LikeCount = ({likeCount, id}:likeCountProps) => {
 
         if (countUpdateData.updatedLikeCount !== undefined) {
           setCount(countUpdateData.updatedLikeCount)
+          //ローディング表示解除
+          setNotLikeYet(false)
           alert(countUpdateData.message)
         }
       } else {
@@ -89,8 +94,10 @@ const LikeCount = ({likeCount, id}:likeCountProps) => {
       console.error("Error:", error)
       alert("いいね失敗")
     }
+  }
 
-
+  if(notLikeYet) {
+    return <Loading />
   }
 
   return(

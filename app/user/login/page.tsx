@@ -14,7 +14,7 @@ const Login = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const router = useRouter()
-  const {setLoginUserId, setLoginUserName, setLoginUserEmail} = useAuthContext()
+  const {setLoginUserId, setLoginUserName, setLoginUserEmail, setLoginUserIcon} = useAuthContext()
 
   const handleSubmit = async(e:React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -25,8 +25,6 @@ const Login = () => {
     }
 
     try{
-      console.log(email);
-      console.log(password);
       const response = await fetch('/api/user/login', {
         method:"POST",
         headers:{
@@ -42,6 +40,7 @@ const Login = () => {
       setLoginUserId(jsonData.payload.id)
       setLoginUserName(jsonData.payload.name)
       setLoginUserEmail(jsonData.payload.email)
+      setLoginUserIcon(jsonData.payload.userIcon)
       alert(jsonData.message)
       router.replace("/")
 
@@ -57,7 +56,7 @@ const Login = () => {
         <h2>ログイン</h2>
         <form onSubmit={handleSubmit}>
           <div className="userFormItem">
-            {/* <input value={email} onChange={(e)=>setEmail(e.target.value)} type="text" name="email" placeholder="email"/> */}
+
             <TextField
               type="email"
               value={email}

@@ -4,16 +4,21 @@ import {useRouter} from "next/navigation"
 import { useAuthContext } from "@/app/AuthContext"
 
 const Logout = () => {
-  const {setLoginUserId, setLoginUserEmail} = useAuthContext()
+  const {setLoginUserId, setLoginUserName, setLoginUserEmail, setLoginUserIcon} = useAuthContext()
   const router = useRouter()
 
   useEffect(() => {
     setLoginUserId(null)
     setLoginUserEmail(null)
-    localStorage.removeItem("token")
+    setLoginUserName(null)
+    setLoginUserIcon(null)
 
-    alert("ログアウトしました")
-    router.replace("/user/login")
+    const token = localStorage.getItem("token")
+    if (token) {
+      localStorage.removeItem("token")
+      alert("ログアウトしました")
+      router.replace("/user/login")
+    }
   }, [])
   return null
 }

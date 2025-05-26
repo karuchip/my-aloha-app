@@ -23,5 +23,17 @@ export async function middleware(request:NextRequest) {
 }
 
 export const config = {
-  matcher: ["/api/post/create", "/api/post/update/:path", "/api/post/delete/:path"],
+  matcher: [
+    "/api/post/create",
+    "/api/post/update/:path",
+    "/api/post/delete/:path",
+    // "/api/user/logout/:path",
+    // "/api/user/mypage/:path",
+    // "/api/user/mypost/:path",
+    // "/api/comment/createComment/:path",
+    // "/api/like/addLikedUser/:path",
+    // "/api/like/likeCountUpdate/:path",
+    // "/api/like/likedCheck/:path",
+    // "/api/like/likePostId/:path"
+  ],
 }

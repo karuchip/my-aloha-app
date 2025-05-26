@@ -6,36 +6,18 @@ import Link from "next/link"
 import useAuth from "@/utils/useAuth"
 import CategoryButtons from "./components/categoryButton"
 import SortPost from "./components/sortPost"
-import Image from "next/image"
+import Loading from "./components/loading"
 //MUI
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid'
-import { CardActionArea, CardHeader, CardMedia, CardContent, CardActions, Collapse, Box, TextField, Typography } from "@mui/material"
+import { CardActionArea, CardHeader, Avatar, CardMedia, CardContent, CardActions, Collapse, Box, TextField, Typography } from "@mui/material"
 import ExpandMore from "./components/expandMore"
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import SearchIcon from '@mui/icons-material/Search';
+import { AllItemTypes } from "@/utils/types/post"
 
-type AllItemTypes = {
-  id: number,
-  createdAt: Date,
-  updatedAt: Date,
-  title: string,
-  content: string,
-  image: string,
-  likeCount: number,
-  lat: number,
-  lon: number,
-  place: string,
-  published: boolean,
-  category: string,
-  authorId: number,
-  author: {
-    id: number,
-    name: string
-  }
-}
 
 export const dynamic = "force-dynamic"
 
@@ -47,15 +29,23 @@ const ReadAllItems = () => {
   const [searchWord, setSearchWord] = useState("")
   const [sortType, setSortType] = useState("new")
   const [expanded, setExpanded] = useState(false);
+  const [listLoading, setListLoading] = useState(true)
 
   const [likePostIds, setLikePostIds] = useState<string[]>([])
 
   //投稿一覧取得
   useEffect(() => {
     const fetchData = async()=>{
-      const response = await fetch('/api/post/readall')
-      const jsonData = await response.json()
-      setAllItems(jsonData.allItems)
+      try {
+        const response = await fetch('/api/post/readall')
+        const jsonData = await response.json()
+        setAllItems(jsonData.allItems)
+
+      }catch(error) {
+        console.error(error)
+      } finally {
+        setListLoading(false)
+      }
     }
     fetchData()
   }, [])
@@ -83,8 +73,8 @@ const ReadAllItems = () => {
   }
 
 
-  if (loading) {
-    return <p>読み込み中...</p>
+  if (loading || listLoading) {
+    return <Loading/>
   }
 
   return(
@@ -95,7 +85,8 @@ const ReadAllItems = () => {
 
             <label style={{display:"flex"}}>
               <Typography  sx={{ fontSize: "16px", mr: 1, color: "#fff", fontWeight:"700" }}>
-                <SearchIcon sx={{m:0, pt:0, color:"#fff"}} />
+                <SearchIcon
+                  sx={{m:0, pt:0, color:"#fff",  width:"40px", height:"40px"}} />
                 <span className="searchIcon"> 検索・ソート</span>
               </Typography>
 
@@ -118,7 +109,7 @@ const ReadAllItems = () => {
             spacing={0}
             justifyContent="center"
             sx={{
-              border:"2px solid #5a8c68",
+              border:"2px solid #66c7d9",
               minWidth: " 200px",
               maxWidth: "1000px",
               margin: "5px 5px 5px 5px",
@@ -163,7 +154,7 @@ const ReadAllItems = () => {
           {allItems
             .filter(item =>
               (!selectCategory || item.category === selectCategory) &&
-              (!searchWord || item.title?.toLowerCase().includes(searchWord.toLowerCase()) || item.content?.toLowerCase().includes(searchWord.toLowerCase()))
+              (!searchWord || item.title?.toLowerCase().includes(searchWord.toLowerCase()) || item.description1?.toLowerCase().includes(searchWord.toLowerCase()))
             )
             .sort((a, b) => {
               if (sortType === "new") {
@@ -177,14 +168,17 @@ const ReadAllItems = () => {
               }
             })
             .map(item => {
-              const createdAtFormatted = dayjs(new Date(item.createdAt)).format("YYYY/MM/DD HH:mm")
-              const updatedAtFormatted = dayjs(new Date(item.updatedAt)).format("YYYY/MM/DD HH:mm")
+              const createdAtFormatted = dayjs(new Date(item.createdAt)).format("YYYY/MM/DD")
+              const updatedAtFormatted = dayjs(new Date(item.updatedAt)).format("YYYY/MM/DD")
 
               const isLiked = likePostIds.includes(String(item.id))
 
               const card = (
                 <CardActionArea component={Link} href={`/post/readsingle/${item.id}`}>
                   <CardHeader
+                    // avatar={
+                    //   <Avatar alt={`${item.author && item.author.name}`} src={`${item.author && item.author.userIcon }`}  />
+                    // }
                     title={item.title}
                     subheader={`by ${item.author && item.author.name }`}
                   />
@@ -192,12 +186,13 @@ const ReadAllItems = () => {
                   <CardMedia
                     component="img"
                     height="250"
-                    image={item.image}
+                    image={item.image1}
                     alt="image"
                   />
 
                   <CardContent>
-                    <p>📍 {item.place}</p>
+                    <p>📍 {item.googlePlace}</p>
+                    <p className="createdDay">{createdAtFormatted}</p>
 
                     <div className="likePosition">
                       <div className={isLiked? "hasLiked" : "hasNotLiked"}>

@@ -74,7 +74,7 @@ const CreateItem = () => {
   if(loginUserId) {
 
     return (
-      <div>
+      <div className="postFormContainer">
         <div className="postFormWrapper">
           <h1>🌺 思い出をシェアしよう！</h1>
           <form onSubmit={handleSubmit} className="createForm">

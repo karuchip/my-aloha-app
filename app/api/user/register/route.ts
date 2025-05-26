@@ -9,7 +9,8 @@ export async function POST(request:Request) {
       data: {
         name:body.name,
         email:body.email,
-        password:body.password
+        password:body.password,
+        userIcon:body.userIcon
       }
     })
     return NextResponse.json({message: 'ユーザー登録に成功しました'})
